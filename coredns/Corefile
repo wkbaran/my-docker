@@ -1,0 +1,17 @@
+. {
+    log
+    errors
+    cache 30
+    forward . 1.1.1.1 8.8.8.8 {
+        except local
+        prefer_udp
+    }
+}
+
+local {
+    errors
+    log
+    file /zones/static.local.db local {
+        reload 10s
+    }
+}
