@@ -10,3 +10,9 @@ services:
       - /var/home/core/coredns/Corefile:/Corefile:ro
       # - /var/home/core/coredns/zones:/zones:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true

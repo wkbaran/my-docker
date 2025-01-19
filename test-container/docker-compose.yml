@@ -8,9 +8,8 @@ services:
       - "traefik.http.routers.test.rule=Host(`test.home`)"
       - "coredns.dockerdiscovery.host=test.home"
     networks:
-      - proxy
+      - app-network
 
 networks:
-  proxy:
-    name: proxy
+  app-network:
     external: true

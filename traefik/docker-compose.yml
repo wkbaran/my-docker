@@ -22,9 +22,8 @@ services:
       - "traefik.http.routers.dashboard.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.users=admin:'$$apr1$$sew4VSra$/U0VX.yk2EDtSUCkvozLu1'"
     networks:
-      - proxy
+      - app-network
 
 networks:
-  proxy:
-    name: proxy
+  app-network:
     external: true
