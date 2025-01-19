@@ -1,12 +1,12 @@
 services:
   test-service:
     image: nginx
-    container_name: test
+    container_name: test-web
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.test.loadbalancer.server.port=80"
-      - "traefik.http.routers.test.rule=Host(`test.home`)"
-      - "coredns.dockerdiscovery.host=test.home"
+      - "traefik.http.routers.test.rule=Host(`test-web.home`)"
+      - "coredns.dockerdiscovery.host=test-web.home"
     networks:
       - app-network
 
