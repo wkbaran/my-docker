@@ -18,10 +18,14 @@ home {
 }
 
 . {
+    cache {
+        success 10000  # Number of successful responses to cache
+        denial 2500    # Number of negative responses to cache
+        prefetch 10 1m # Prefetch frequently used records when they reach 10% of their TTL 
+    }
     errors
     log
     health
     ready
     forward . 8.8.8.8 8.8.4.4
-    cache 30
 }
