@@ -1,17 +1,27 @@
-. {
-    log
+home {
     errors
-    cache 30
-    forward . 1.1.1.1 8.8.8.8 {
-        except local
-        prefer_udp
+    log {
+      class all
     }
+    rewrite stop type AAAA A
+    hosts {
+        # Static entries
+        192.168.50.207 nuc1.home
+        192.168.50.49 pi4.home
+        fallthrough
+    }
+    docker {
+        domain home
+        ttl 60
+    }
+    cache 30
 }
 
-local {
+. {
     errors
     log
-    file /zones/static.local.db local {
-        reload 10s
-    }
+    health
+    ready
+    forward . 8.8.8.8 8.8.4.4
+    cache 30
 }

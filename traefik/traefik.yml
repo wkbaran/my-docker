@@ -1,0 +1,22 @@
+api:
+  dashboard: true
+  debug: true
+
+entryPoints:
+  web:
+    address: "0.0.0.0:80"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    watch: true
+    defaultRule: "Host(`{{ normalize .Name }}.home`)"
+
+log:
+  level: INFO
+
+accessLog: {}
+
+pilot:
+  dashboard: true

@@ -1,6 +1,6 @@
 services:
   coredns:
-    image: coredns/coredns
+    build: .
     container_name: coredns
     restart: unless-stopped
     ports:
@@ -8,5 +8,5 @@ services:
       - "53:53/tcp"
     volumes:
       - /var/home/core/coredns/Corefile:/Corefile:ro
-      - /var/home/core/coredns/zones:/zones:ro
+      # - /var/home/core/coredns/zones:/zones:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro

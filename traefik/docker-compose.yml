@@ -1,0 +1,30 @@
+services:
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "80:80"     # HTTP
+      - "8080:8080" # Dashboard
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/home/core/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - /var/home/core/traefik/config:/etc/traefik/config
+    labels:
+      - "traefik.enable=true"
+      # Dashboard
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.home`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.entrypoints=web"
+      - "traefik.http.routers.dashboard.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=admin:'$$apr1$$sew4VSra$/U0VX.yk2EDtSUCkvozLu1'"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: proxy
+    external: true

@@ -1,0 +1,16 @@
+services:
+  test-service:
+    image: nginx
+    container_name: test
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.test.loadbalancer.server.port=80"
+      - "traefik.http.routers.test.rule=Host(`test.home`)"
+      - "coredns.dockerdiscovery.host=test.home"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: proxy
+    external: true
