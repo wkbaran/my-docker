@@ -10,25 +10,22 @@ services:
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=psql.home
       - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
-      - DB_POSTGRESDB_USER=${POSTGRES_NON_ROOT_USER}
-      - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
+    env_file:
+      - .env
     ports:
       - 5678:5678
-    links:
-      - postgres
     volumes:
-      - n8n_storage:/home/node/.n8n
-    depends_on:
-      postgres:
-        condition: service_healthy
+      - n8n_data:/home/node/.n8n
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.test.loadbalancer.server.port=80"
       - "traefik.http.routers.test.rule=Host(`n8n.home`)"
       - "coredns.dockerdiscovery.host=n8n.home"
+    dns:
+      - 192.168.40.5
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 192.168.40.3
 
 networks:
   app-network:

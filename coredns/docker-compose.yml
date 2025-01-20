@@ -10,8 +10,16 @@ services:
       - /var/home/core/coredns/Corefile:/Corefile:ro
       # - /var/home/core/coredns/zones:/zones:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.test.loadbalancer.server.port=80"
+      - "traefik.http.routers.test.rule=Host(`coredns.home`)"
+      - "coredns.dockerdiscovery.host=coredns.home"
+    dns:
+      - 192.168.40.5
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 192.168.40.5
 
 networks:
   app-network:

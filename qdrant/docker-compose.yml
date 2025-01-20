@@ -8,8 +8,11 @@ services:
     volumes:
       - qdrant_data:/qdrant/storage
     restart: unless-stopped
+    dns:
+      - 192.168.40.5
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 192.168.40.4
 
 networks:
   app-network:
