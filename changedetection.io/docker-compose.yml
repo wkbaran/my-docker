@@ -1,0 +1,36 @@
+services:
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io
+    container_name: changedetection
+    hostname: changes
+    volumes:
+      - chgdet_data:/datastore
+    # ports:
+    #   - 5000:5000
+    restart: unless-stopped
+    environment:
+      # - PORT=5000
+      - PORT=80
+      - BASE_URL=/
+      # Allows you to handle large webpage snapshots
+      - FETCH_WORKERS=4
+      - MAX_REQUESTS_PER_WORKER=10
+      # Default time between checks (in seconds)
+      - CHECK_INTERVAL=3600
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.test.loadbalancer.server.port=80"
+      - "traefik.http.routers.test.rule=Host(`changes.home`)"
+      - "coredns.dockerdiscovery.host=changes.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      - app-network
+
+volumes:
+  chgdet_data:
+    external: true
+
+networks:
+  app-network:
+    external: true
