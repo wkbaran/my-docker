@@ -7,11 +7,17 @@ services:
     image: docker.n8n.io/n8nio/n8n
     restart: always
     environment:
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=psql.home
-      - DB_POSTGRESDB_PORT=5432
-    env_file:
-      - .env
+      - DB_TYPE
+      - DB_POSTGRESDB_DATABASE
+      - DB_POSTGRESDB_HOST
+      - DB_POSTGRESDB_PORT
+      - DB_POSTGRESDB_USER
+      - DB_POSTGRESDB_PASSWORD
+      - DB_POSTGRESDB_SCHEMA
+      - N8N_LOG_LEVEL
+      - N8N_SECURE_COOKIE
+      - N8N_HOST
+      - N8N_PORT
     ports:
       - 5678:5678
     volumes:
