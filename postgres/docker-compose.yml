@@ -16,11 +16,16 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.test.loadbalancer.server.port=80"
+      - "traefik.http.routers.test.rule=Host(`psql.home`)"
+      - "coredns.dockerdiscovery.host=psql.home"
     dns:
       - 192.168.40.5
     networks:
       app-network:
-        ipv4_address: 192.168.40.2
+        ipv4_address: 192.168.40.7
 
 networks:
   app-network:

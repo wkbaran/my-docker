@@ -10,7 +10,8 @@ services:
     dns:
       - 192.168.40.5
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 192.168.40.9
 
 networks:
   app-network:
