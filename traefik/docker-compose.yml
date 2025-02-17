@@ -20,9 +20,12 @@ services:
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.entrypoints=web"
       - "traefik.http.routers.dashboard.middlewares=auth"
-      - "traefik.http.middlewares.auth.basicauth.users=admin:'$$apr1$$sew4VSra$/U0VX.yk2EDtSUCkvozLu1'"
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTHUSER}:${AUTHPWD}"
+    dns:
+      - 192.168.40.5
     networks:
-      - app-network
+      app-network:
+        ipv4_address: 192.168.40.11
 
 networks:
   app-network:
