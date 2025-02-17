@@ -1,0 +1,33 @@
+services:
+  postgres:
+    container_name: jenkins
+    image: jenkins/jenkins:2.497
+    restart: unless-stopped
+#    env_file:
+#      - .env
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+#    healthcheck:
+#      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+#      interval: 5s
+#      timeout: 5s
+#      retries: 10
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.test.loadbalancer.server.port=80"
+      - "traefik.http.routers.test.rule=Host(`jenkins.home`)"
+      - "coredns.dockerdiscovery.host=jenkins.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.8
+
+volumes:
+  jenkins-data:
+    external: true
+
+networks:
+  app-network:
+    external: true
