@@ -1,0 +1,15 @@
+services:
+  keydb:
+    image: eqalpha/keydb
+    container_name: keydb
+    ports:
+      - "6379:6379"
+      - "8080:8080"  # Enable REST API
+    volumes:
+      - keydb_data:/data
+    labels:
+      - "coredns.dockerdiscovery.host=keydb.home"
+    command: keydb-server --enable-http --appendonly yes
+
+volumes:
+  keydb_data:
