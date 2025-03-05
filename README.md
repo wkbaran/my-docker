@@ -3,7 +3,7 @@
 The config files and scripts to create my various docker containers.
 
 Current:
- - CoreDNS with static ip's and docker plugin
+ - Portainer
  - Supabase. Using supabase-db postgres server for n8n backend
  - n8n
  - Qdrant vector store
