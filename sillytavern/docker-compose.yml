@@ -1,0 +1,27 @@
+services:
+  n8n:
+    container_name: n8n
+    image: n8nio/n8n:1.76.0
+    restart: always
+    ports:
+      - 80:8000
+    volumes:
+      - n8n_data:/home/node/.n8n
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.test.loadbalancer.server.port=80"
+      - "traefik.http.routers.test.rule=Host(`silly.home`)"
+      - "coredns.dockerdiscovery.host=silly.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.9
+
+volumes:
+  SillyTavern-data:
+    external: true
+
+networks:
+  app-network:
+    external: true

@@ -6,10 +6,10 @@ services:
       - "6379:6379"
       - "8080:8080"  # Enable REST API
     volumes:
-      - keydb_data:/data
+      - keydb:/data
     labels:
       - "coredns.dockerdiscovery.host=keydb.home"
     command: keydb-server --enable-http --appendonly yes
 
 volumes:
-  keydb_data:
+  keydb:
