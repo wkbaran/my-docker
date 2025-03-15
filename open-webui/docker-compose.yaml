@@ -7,7 +7,7 @@ services:
       - "3000:3000"
     volumes:
       - open-webui-data:/app/backend/data
-    environment:
+#    environment:
       # - WEBUI_SKIP_INITIAL_LLM_CONFIG=true
     dns:
       - 192.168.40.5
