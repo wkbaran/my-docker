@@ -4,15 +4,15 @@ services:
     container_name: open-webui
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "80:8080"
     volumes:
       - open-webui-data:/app/backend/data
 #    environment:
       # - WEBUI_SKIP_INITIAL_LLM_CONFIG=true
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.test.loadbalancer.server.port=80"
-      - "traefik.http.routers.test.rule=Host(`llmui.home`)"
+#      - "traefik.enable=true"
+#      - "traefik.http.services.test.loadbalancer.server.port=80"
+#      - "traefik.http.routers.test.rule=Host(`llmui.home`)"
       - "coredns.dockerdiscovery.host=llmui.home"
     dns:
       - 192.168.40.5
