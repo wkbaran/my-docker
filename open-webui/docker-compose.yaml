@@ -1,0 +1,24 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - open-webui-data:/app/backend/data
+    environment:
+      # - WEBUI_SKIP_INITIAL_LLM_CONFIG=true
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.10
+
+volumes:
+  open-webui-data:
+    external: true
+
+networks:
+  app-network:
+    external: true
