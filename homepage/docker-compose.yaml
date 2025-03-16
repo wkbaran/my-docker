@@ -1,0 +1,35 @@
+services:
+  homepage:
+    container_name: homepage
+    image: ghcr.io/gethomepage/homepage:v1.0.3
+    restart: unless-stopped
+    environment:
+      #- PUID=${PUID:-1000}
+      #- PGID=${PGID:-1000}
+      - TZ=America/Denver
+      # Theme configuration
+      - HOMEPAGE_THEME=dark
+      - HOMEPAGE_COLOR=slate
+      - HOMEPAGE_THEME_COLOR=gray-900
+      - HOMEPAGE_CUSTOM_TITLE=NexusCore
+      - PORT=80
+      - HOMEPAGE_ALLOWED_HOSTS=192.168.40.11,home.home
+    volumes:
+      - /var/home/core/homepage/config:/app/config
+      - /var/home/core/homepage/public/icons:/app/public/icons
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.11
+    dns:
+      - 192.168.40.5
+    labels:
+      - "coredns.dockerdiscovery.host=home.home"
+
+volumes:
+  homepage-data:
+    name: homepage-data
+
+networks:
+  app-network:
+    external: true

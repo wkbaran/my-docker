@@ -1,0 +1,66 @@
+---
+# For more examples, see: https://gethomepage.dev/latest/configs/services/
+
+- Docker hosts:
+    - NUC1:
+        icon: si-docker
+        description: Primary
+        ping: nuc1.home
+      
+    - Raspberry Pi:
+        icon: mdi-raspberry-pi
+        description: Pi 4
+        ping: pi4.home # Adjust hostname if different
+
+    - AWS:
+        icon: si-amazonec2
+        description: Cloud Jobs
+        ping: jobs.billbaran.us # Adjust hostname if needed
+
+- Applications:
+    - Portainer:
+        icon: si-portainer
+        href: http://port.home:443
+        description: Container management
+      
+    - Change Detection:
+        icon: sh-changedetection
+        href: http://changes.home
+        description: Website change monitoring
+      
+    - Qdrant:
+        icon: /icons/qdrant-icon.png
+        href: http://qdrant.home:6333
+        description: Vector database
+      
+    - Jenkins:
+        icon: si-jenkins
+        href: http://jenkins.home:8080
+        description: CI/CD pipeline
+      
+    - Nginx:
+        icon: si-nginx
+        href: http://web.home
+        description: Web server
+      
+    - Open WebUI:
+        icon: si-ollama
+        href: http://llm.home
+        description: LLM interface
+
+- External:
+    - ntfy:
+        icon: si-ntfy
+        href: https://ntfy.billbaran.us
+        description: Notification service
+
+- Weather:
+    - Boise Weather:
+        icon: si-openmeteo
+        description: Current conditions
+        widget:
+          type: openmeteo
+          latitude: 43.614
+          longitude: -116.298
+          units: imperial
+          provider: metno

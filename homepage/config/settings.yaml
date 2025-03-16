@@ -1,0 +1,75 @@
+---
+# Homepage configuration - https://gethomepage.dev/latest/configs/settings/
+
+title: NexusCore
+headerStyle: clean
+
+# Dark cyberpunk theme
+theme: dark
+color: slate
+customStyles: |
+  :root {
+    --primary-color: #0ee1ff;
+    --background-color: #111111;
+    --background-color-lighter: #191919;
+    --card-background: #1d1d1d;
+    --text-color: #d6d6d6;
+  }
+  body {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.imgur.com/Wz4Bpgg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  .service-container {
+    backdrop-filter: blur(10px);
+    background-color: rgba(29, 29, 29, 0.7) !important;
+    border: 1px solid rgba(14, 225, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  .service-container:hover {
+    border: 1px solid rgba(14, 225, 255, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(14, 225, 255, 0.3);
+  }
+
+providers:
+  # Uncomment and configure any needed providers
+  # weatherapi:
+  #   apiKey: {{ .Env.HOMEPAGE_WEATHERAPI_KEY }}
+  #   city: Boise
+  #   units: imperial
+
+layout:
+  Docker hosts:
+    style: row
+    columns: 3
+  Applications:
+    style: row
+    columns: 3
+  External:
+    style: row
+    columns: 3
+
+# Configure the header
+header:
+  components:
+    - type: clock
+      format: en-US
+      
+    - type: date
+      format: en-US
+      
+    - type: weather
+      latitude: 43.614
+      longitude: -116.298
+      units: imperial
+      provider: metno
+      
+    - type: search
+      focus: true
+      showSearchButton: true
+      
+    - type: resources
+      cpu: true
+      memory: true
+      disk: /
