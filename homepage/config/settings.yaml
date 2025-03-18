@@ -43,12 +43,25 @@ layout:
   Docker hosts:
     style: row
     columns: 3
-  Applications:
-    style: row
-    columns: 3
   External:
     style: row
     columns: 3
+  Applications:
+    style: row
+    columns: 3
+  sidebar:
+    style: column
+    columns: 2
+    sections:
+      - Databases:
+          style: row
+          columns: 1
+      - Automation:
+          style: row
+          columns: 1
+  Weather:
+    style: row
+    columns: 1
 
 # Configure the header
 header:

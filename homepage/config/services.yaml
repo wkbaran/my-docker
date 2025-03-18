@@ -17,42 +17,63 @@
         description: Cloud Jobs
         ping: jobs.billbaran.us # Adjust hostname if needed
 
-- Applications:
-    - Portainer:
-        icon: si-portainer
-        href: http://port.home:443
-        description: Container management
-      
-    - Change Detection:
-        icon: sh-changedetection
-        href: http://changes.home
-        description: Website change monitoring
-      
-    - Qdrant:
-        icon: /icons/qdrant-icon.png
-        href: http://qdrant.home:6333
-        description: Vector database
-      
-    - Jenkins:
-        icon: si-jenkins
-        href: http://jenkins.home:8080
-        description: CI/CD pipeline
-      
-    - Nginx:
-        icon: si-nginx
-        href: http://web.home
-        description: Web server
-      
-    - Open WebUI:
-        icon: si-ollama
-        href: http://llm.home
-        description: LLM interface
-
 - External:
     - ntfy:
         icon: si-ntfy
         href: https://ntfy.billbaran.us
         description: Notification service
+        siteMonitor: https://ntfy.billbaran.us
+
+- Applications:
+    - Portainer:
+        icon: si-portainer
+        href: http://port.home:443
+        description: Container management
+        siteMonitor: http://port.home:443
+      
+    - Change Detection:
+        icon: sh-changedetection
+        href: http://changes.home
+        description: Website change monitoring
+        siteMonitor: http://changes.home
+      
+    - Qdrant:
+        icon: /icons/qdrant-icon.png
+        href: http://qdrant.home:6333
+        description: Vector database
+        siteMonitor: http://qdrant.home:6333
+      
+    - Jenkins:
+        icon: si-jenkins
+        href: http://jenkins.home:8080
+        description: CI/CD pipeline
+        siteMonitor: http://jenkins.home:8080
+      
+    - Nginx:
+        icon: si-nginx
+        href: http://web.home
+        description: Web server
+        siteMonitor: http://web.home
+      
+    - Open WebUI:
+        icon: si-ollama
+        href: http://llm.home
+        description: LLM interface
+        siteMonitor: http://llm.home
+
+- Databases:
+    - PostgreSQL:
+        icon: si-postgresql
+        href: http://psql.home:5432
+        description: Database server
+        ping: psql.home
+
+- Automation:
+    - n8n:
+        icon: si-n8n
+        href: http://n8n.home
+        description: Workflow automation
+        siteMonitor: http://n8n.home
 
 - Weather:
     - Boise Weather:
