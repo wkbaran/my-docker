@@ -23,9 +23,6 @@ services:
     volumes:
       - n8n:/home/node/.n8n
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.test.loadbalancer.server.port=80"
-      - "traefik.http.routers.test.rule=Host(`n8n.home`)"
       - "coredns.dockerdiscovery.host=n8n.home"
     dns:
       - 192.168.40.5

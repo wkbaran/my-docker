@@ -1,6 +1,5 @@
 services:
   portainer:
-    # image: portainer/portainer:linux-amd64-2.0.1
     image: portainer/portainer-ce:2.26.1-linux-amd64-alpine
     container_name: portainer
     hostname: port
@@ -8,13 +7,8 @@ services:
     volumes:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
-#    ports:   # Don't need ports when using macvlan
-#      - 443:9443
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.test.loadbalancer.server.port=443"
-      - "traefik.http.routers.test.rule=Host(`port.home`)"
       - "coredns.dockerdiscovery.host=port.home"
     dns:
       - 192.168.40.5

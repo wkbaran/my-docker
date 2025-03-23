@@ -32,36 +32,37 @@ customStyles: |
     box-shadow: 0 0 15px rgba(14, 225, 255, 0.3);
   }
 
-providers:
-  # Uncomment and configure any needed providers
-  # weatherapi:
-  #   apiKey: {{ .Env.HOMEPAGE_WEATHERAPI_KEY }}
-  #   city: Boise
-  #   units: imperial
+# Disable automatic services that might be causing spacing issues
+disableAutomaticServices: true
 
+# Define the order of groups
 layout:
   Docker hosts:
-    style: row
-    columns: 3
-  External:
     style: row
     columns: 3
   Applications:
     style: row
     columns: 3
-  sidebar:
-    style: column
+  Database & Automation:
+    style: row
     columns: 2
-    sections:
-      - Databases:
-          style: row
-          columns: 1
-      - Automation:
-          style: row
-          columns: 1
   Weather:
     style: row
     columns: 1
+  External:
+    style: row
+    columns: 1
+
+# Settings for site monitoring
+settings:
+  ping:
+    timeout: 3000
+    method: icmp
+    interval: 60000
+  siteMonitor:
+    timeout: 5000
+    interval: 120000
+    allowUntrustedCerts: true
 
 # Configure the header
 header:
@@ -76,7 +77,6 @@ header:
       latitude: 43.614
       longitude: -116.298
       units: imperial
-      provider: metno
       
     - type: search
       focus: true

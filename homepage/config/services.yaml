@@ -10,19 +10,12 @@
     - Raspberry Pi:
         icon: mdi-raspberry-pi
         description: Pi 4
-        ping: pi4.home # Adjust hostname if different
-
+        ping: pi4.home
+        
     - AWS:
         icon: si-amazonec2
         description: Cloud Jobs
-        ping: jobs.billbaran.us # Adjust hostname if needed
-
-- External:
-    - ntfy:
-        icon: si-ntfy
-        href: https://ntfy.billbaran.us
-        description: Notification service
-        siteMonitor: https://ntfy.billbaran.us
+        ping: jobs.billbaran.us
 
 - Applications:
     - Portainer:
@@ -61,27 +54,22 @@
         description: LLM interface
         siteMonitor: http://llm.home
 
-- Databases:
+- Database & Automation:
     - PostgreSQL:
         icon: si-postgresql
         href: http://psql.home:5432
         description: Database server
         ping: psql.home
-
-- Automation:
+        
     - n8n:
         icon: si-n8n
         href: http://n8n.home
         description: Workflow automation
         siteMonitor: http://n8n.home
 
-- Weather:
-    - Boise Weather:
-        icon: si-openmeteo
-        description: Current conditions
-        widget:
-          type: openmeteo
-          latitude: 43.614
-          longitude: -116.298
-          units: imperial
-          provider: metno
+- External:
+    - ntfy:
+        icon: si-ntfy
+        href: https://ntfy.billbaran.us
+        description: Notification service
+        siteMonitor: https://ntfy.billbaran.us

@@ -1,0 +1,14 @@
+---
+# Define widget configurations for Homepage
+# Create this as a new file: widgets.yaml in your config directory
+
+- resources:
+  cpu: true
+  memory: true
+
+- openmeteo:
+  label: Boise  # optional
+  latitude: 43.614
+  longitude: -116.298
+  units: imperial  # or metric
+  cache: 5  # Time in minutes to cache API responses

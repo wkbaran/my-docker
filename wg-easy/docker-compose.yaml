@@ -1,0 +1,33 @@
+services:
+  wg-easy:
+    image: weejewel/wg-easy:7
+    container_name: wg-easy
+    volumes:
+      - /var/home/core/wg-easy/wireguard:/etc/wireguard
+#    ports:  # ports not needed when using macvlan
+#      - "51820:51820/udp" # WireGuard port
+#      - "51821:51821"     # Web UI port
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    privileged: true
+    environment:
+      - WG_HOST=vpn.billbaran.us
+      - PASSWORD=${ADMINPWD}
+      - WG_DEFAULT_DNS=192.168.40.5
+      - WG_DEFAULT_ADDRESS=10.8.0.x
+    labels:
+      - "coredns.dockerdiscovery.host=vpn.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.12
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
+
+networks:
+  app-network:
+    external: true
