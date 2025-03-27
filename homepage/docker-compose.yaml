@@ -23,10 +23,6 @@ services:
     labels:
       - "coredns.dockerdiscovery.host=home.home"
 
-volumes:
-  homepage-data:
-    name: homepage-data
-
 networks:
   app-network:
     external: true
