@@ -7,6 +7,7 @@ services:
       - open-webui-data:/app/backend/data
     environment:
       - PORT=80
+      - ADMIN_EMAIL=bill.baran@gmail.com
     labels:
       - "coredns.dockerdiscovery.host=llm.home"
     dns:
