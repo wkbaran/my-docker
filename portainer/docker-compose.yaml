@@ -1,6 +1,6 @@
 services:
   portainer:
-    image: portainer/portainer-ce:2.26.1-linux-amd64-alpine
+    image: portainer/portainer-ce:2.27.3
     container_name: portainer
     hostname: port
     entrypoint: /portainer -p :443
