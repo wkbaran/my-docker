@@ -1,10 +1,7 @@
-volumes:
-  n8n:
-
 services:
   n8n:
     container_name: n8n
-    image: n8nio/n8n:1.82.3
+    image: n8nio/n8n:1.84.3
     restart: always
     environment:
       - DB_TYPE
@@ -18,8 +15,8 @@ services:
       - N8N_SECURE_COOKIE
       - N8N_HOST
       - N8N_PORT
-    ports:
-      - 5678:5678
+    # ports:  # Not needed for macvlan
+    #   - 5678:5678
     volumes:
       - n8n:/home/node/.n8n
     labels:
@@ -29,6 +26,9 @@ services:
     networks:
       app-network:
         ipv4_address: 192.168.40.6
+
+volumes:
+  n8n:
 
 networks:
   app-network:
