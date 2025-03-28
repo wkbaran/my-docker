@@ -32,7 +32,7 @@
       
     - Qdrant:
         icon: /icons/qdrant-icon.png
-        href: http://qdrant.home:6333
+        href: http://qdrant.home:6333/dashboard/#/collections
         description: Vector database
         siteMonitor: http://qdrant.home:6333
       
