@@ -3,8 +3,12 @@ services:
     container_name: psql
     image: postgres:16
     restart: always
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_NON_ROOT_USER
+      - POSTGRES_NON_ROOT_PASSWORD
     volumes:
       - psql:/var/lib/postgresql/data
       - /var/home/core/psql/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
