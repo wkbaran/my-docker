@@ -1,7 +1,7 @@
 services:
   n8n:
     container_name: n8n
-    image: n8nio/n8n:1.84.3
+    image: n8nio/n8n:1.85.4
     restart: always
     environment:
       - DB_TYPE
