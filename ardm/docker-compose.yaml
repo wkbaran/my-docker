@@ -1,0 +1,20 @@
+services:
+  ardm:
+    image: redisdesktop/rdm
+    container_name: ardm
+    volumes:
+      - ardm:/root/.rdm
+    labels:
+      - "coredns.dockerdiscovery.host=ardm.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.14
+
+volumes:
+  ardm:
+
+networks:
+  app-network:
+    external: true
