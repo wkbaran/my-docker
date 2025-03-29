@@ -1,0 +1,31 @@
+name: ghostfolio
+services:
+  ghostfolio:
+    image: docker.io/ghostfolio/ghostfolio:latest
+    container_name: ghostfolio
+    restart: unless-stopped
+    # init: true  # Couldn't find binary. Hopefully don't need
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    env_file:
+      - ./.env
+    # ports:  # Not needed for macvlan
+    #   - 3333:3333
+    labels:
+      - "coredns.dockerdiscovery.host=ghost.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.20
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:80/api/v1/health']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app-network:
+    external: true
