@@ -124,7 +124,6 @@ services:
     hostname: db
     container_name: firefly_iii_db
     restart: always
-    env_file: .db.env
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD
       - MYSQL_USER
