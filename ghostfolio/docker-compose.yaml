@@ -9,8 +9,19 @@ services:
       - ALL
     security_opt:
       - no-new-privileges:true
-    env_file:
-      - ./.env
+    environment:
+      - DATABASE_URL
+      - REDIS_HOST
+      - REDIS_PORT
+      - JWT_SECRET_KEY
+      - ACCESS_TOKEN_EXPIRES_IN
+      - ENABLE_FEATURE_SUBSCRIPTION
+      - ENABLE_FEATURE_READONLY_MODE
+      - DEFAULT_LANGUAGE
+      - DEFAULT_CURRENCY
+      - BASE_URL
+      - PORT
+      - ACCESS_TOKEN_SALT
     # ports:  # Not needed for macvlan
     #   - 3333:3333
     labels:
