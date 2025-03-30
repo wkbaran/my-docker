@@ -18,11 +18,11 @@
         ping: jobs.billbaran.us
 
 - Applications:
-    - Portainer:
-        icon: si-portainer
-        href: http://port.home:443
-        description: Container management
-        siteMonitor: http://port.home:443
+    - Open WebUI:
+        icon: si-ollama
+        href: http://llm.home
+        description: LLM interface
+        siteMonitor: http://llm.home
       
     - Change Detection:
         icon: sh-changedetection
@@ -30,42 +30,72 @@
         description: Website change monitoring
         siteMonitor: http://changes.home
       
-    - Qdrant:
-        icon: /icons/qdrant-icon.png
-        href: http://qdrant.home:6333/dashboard/#/collections
-        description: Vector database
-        siteMonitor: http://qdrant.home:6333
-      
     - Jenkins:
         icon: si-jenkins
         href: http://jenkins.home:8080
         description: CI/CD pipeline
         siteMonitor: http://jenkins.home:8080
-      
-    - Nginx:
-        icon: si-nginx
-        href: http://web.home
-        description: Web server
-        siteMonitor: http://web.home
-      
-    - Open WebUI:
-        icon: si-ollama
-        href: http://llm.home
-        description: LLM interface
-        siteMonitor: http://llm.home
-
-- Database & Automation:
-    - PostgreSQL:
-        icon: si-postgresql
-        href: http://psql.home:5432
-        description: Database server
-        ping: psql.home
         
     - n8n:
         icon: si-n8n
         href: http://n8n.home
         description: Workflow automation
         siteMonitor: http://n8n.home
+      
+- Financial:
+    - Firefly III:
+        icon: si-fireflyiii
+        href: http://ff3.home:8080/
+        description: Financial tracker
+        siteMonitor: http://ff3.home:8080
+        
+    - Ghostfolio:
+        icon: si-ghostery
+        href: http://ghost.home
+        description: Wealth tracker
+        siteMonitor: http://ghost.home
+
+- Databases:
+    - PostgreSQL:
+        icon: si-postgresql
+        href: http://psql.home:5432
+        description: Relational DB
+        ping: psql.home
+        
+    - KeyDB:
+        icon: si-redis
+        description: KeyVal DB
+        ping: keydb.home
+      
+    - Qdrant:
+        icon: /icons/qdrant-icon.png
+        href: http://qdrant.home:6333/dashboard/#/collections
+        description: Vector DB
+        siteMonitor: http://qdrant.home:6333
+
+- Services:
+    - Portainer:
+        icon: si-portainer
+        href: http://port.home:443
+        description: Docker management
+        siteMonitor: http://port.home:443
+      
+    - CoreDNS:
+        icon: mdi-dns
+        description: DNS server
+        ping: coredns.home
+
+    - Nginx:
+        icon: si-nginx
+        href: http://web.home
+        description: Web server
+        siteMonitor: http://web.home
+        
+    - Wireguard:
+        icon: si-wireguard
+        href: http://vpn.home:51821/
+        description: VPN server
+        siteMonitor: http://vpn.home:51821
 
 - External:
     - ntfy:

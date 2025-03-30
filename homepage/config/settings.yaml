@@ -42,47 +42,17 @@ layout:
     columns: 3
   Applications:
     style: row
-    columns: 3
-  Database & Automation:
+    columns: 2
+  Financial:
     style: row
     columns: 2
-  Weather:
+  Databases:
     style: row
-    columns: 1
+    columns: 3
+  Services:
+    style: row
+    columns: 2
   External:
     style: row
     columns: 1
 
-# Settings for site monitoring
-settings:
-  ping:
-    timeout: 3000
-    method: icmp
-    interval: 60000
-  siteMonitor:
-    timeout: 5000
-    interval: 120000
-    allowUntrustedCerts: true
-
-# Configure the header
-header:
-  components:
-    - type: clock
-      format: en-US
-      
-    - type: date
-      format: en-US
-      
-    - type: weather
-      latitude: 43.614
-      longitude: -116.298
-      units: imperial
-      
-    - type: search
-      focus: true
-      showSearchButton: true
-      
-    - type: resources
-      cpu: true
-      memory: true
-      disk: /
