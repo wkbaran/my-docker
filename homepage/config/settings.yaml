@@ -3,10 +3,12 @@
 
 title: NexusCore
 headerStyle: clean
+background: /images/zengarden_fromdeck.jpg
 
 # Dark cyberpunk theme
 theme: dark
 color: slate
+cardBlur: xs # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
 customStyles: |
   :root {
     --primary-color: #0ee1ff;
