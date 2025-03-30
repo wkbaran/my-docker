@@ -3,12 +3,17 @@
 
 title: NexusCore
 headerStyle: clean
-background: /images/zengarden_fromdeck.jpg
+background: 
+  image: /images/zengarden_fromdeck.jpg
+  #blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
+  saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
+  brightness: 60 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
+  opacity: 30 # 0-100
 
 # Dark cyberpunk theme
 theme: dark
 color: slate
-cardBlur: xs # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
+cardBlur: 3xl # xs, md, etc... see https://tailwindcss.com/docs/backdrop-blur
 customStyles: |
   :root {
     --primary-color: #0ee1ff;
@@ -29,6 +34,7 @@ customStyles: |
     transition: all 0.3s ease;
   }
   .service-container:hover {
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(14, 225, 255, 0.6);
     transform: translateY(-2px);
     box-shadow: 0 0 15px rgba(14, 225, 255, 0.3);

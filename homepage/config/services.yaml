@@ -6,7 +6,7 @@
         icon: si-docker
         description: Primary
         ping: nuc1.home
-      
+
     - Raspberry Pi:
         icon: mdi-raspberry-pi
         description: Pi 4
