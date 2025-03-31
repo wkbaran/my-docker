@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    image: mongo:8.0.6
+    container_name: mongo
+    # ports:   # Not needed for macvlan
+    #   - '27017:27017'
+    volumes:
+      - mongodb:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+    labels:
+      - "coredns.dockerdiscovery.host=mongo.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.17
+
+volumes:
+  mongodb:
+
+networks:
+  app-network:
+    external: true
