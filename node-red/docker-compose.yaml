@@ -21,4 +21,5 @@ volumes:
   node-red-data:
 
 networks:
-  node-red-net:
+  app-network:
+    external: true
