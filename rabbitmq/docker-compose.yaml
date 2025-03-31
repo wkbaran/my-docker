@@ -1,0 +1,25 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+#    ports:    # Not needed for macvlan
+#      - "8080:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER
+      - RABBITMQ_DEFAULT_PASS
+    labels:
+      - "coredns.dockerdiscovery.host=rmq.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.19
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  app-network:
+    external: true
