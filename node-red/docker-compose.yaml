@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  node-red:
+    image: nodered/node-red:4.0.9-22
+    environment:
+      - TZ=${TZ}
+#    ports:    # Don't need for macvlan
+#      - "1880:1880"
+    volumes:
+      - node-red-data:/data
+    labels:
+      - "coredns.dockerdiscovery.host=nred.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.13
+
+volumes:
+  node-red-data:
+
+networks:
+  node-red-net:
