@@ -1,0 +1,23 @@
+services:
+  valkey:
+    image: valkey/valkey:8.1.0
+    container_name: valkey
+    # ports:   # Not needed for macvlan
+    #   - "6379:6379"
+    #   - "8080:8080"
+    volumes:
+      - valkey:/data
+    labels:
+      - "coredns.dockerdiscovery.host=key.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.13
+
+volumes:
+  valkey:
+
+networks:
+  app-network:
+    external: true
