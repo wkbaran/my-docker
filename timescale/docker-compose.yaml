@@ -1,5 +1,5 @@
 services:
-  timescaledb:
+  timescale:
     container_name: timescaledb
     image: timescale/timescaledb:2.19.0-pg16
     restart: always
@@ -12,7 +12,8 @@ services:
       - TIMESCALEDB_TUNE=true
     volumes:
       - postgres_psql:/var/lib/postgresql/data
-      - /var/home/core/psql/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+      - /var/home/core/timescale/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - /var/home/core/timescale/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
       interval: 5s
