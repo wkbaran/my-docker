@@ -1,5 +1,5 @@
 services:
-  postgres:
+  timescaledb:
     container_name: timescaledb
     image: timescale/timescaledb:2.19.0-pg16
     restart: always
@@ -27,7 +27,7 @@ services:
         ipv4_address: 192.168.40.7
 
 volumes:
-  psql:
+  postgres_psql:
     external: true
 
 networks:
