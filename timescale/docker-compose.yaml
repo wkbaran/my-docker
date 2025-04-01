@@ -19,6 +19,7 @@ services:
       retries: 10
     labels:
       - "coredns.dockerdiscovery.host=time.home"
+      - "coredns.dockerdiscovery.host=psql.home"
     dns:
       - 192.168.40.5
     networks:
