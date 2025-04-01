@@ -1,0 +1,33 @@
+services:
+  postgres:
+    container_name: timescaledb
+    image: timescale/timescaledb:2.19.0-pg16
+    restart: always
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_NON_ROOT_USER
+      - POSTGRES_NON_ROOT_PASSWORD
+    volumes:
+      - psql:/var/lib/postgresql/data
+      - /var/home/core/psql/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    labels:
+      - "coredns.dockerdiscovery.host=time.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.7
+
+volumes:
+  psql:
+
+networks:
+  app-network:
+    external: true
