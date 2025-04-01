@@ -9,6 +9,7 @@ services:
       - POSTGRES_DB
       - POSTGRES_NON_ROOT_USER
       - POSTGRES_NON_ROOT_PASSWORD
+      - TIMESCALEDB_TUNE=true
     volumes:
       - postgres_psql:/var/lib/postgresql/data
       - /var/home/core/psql/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
@@ -18,7 +19,6 @@ services:
       timeout: 5s
       retries: 10
     labels:
-      - "coredns.dockerdiscovery.host=time.home"
       - "coredns.dockerdiscovery.host=psql.home"
     dns:
       - 192.168.40.5
