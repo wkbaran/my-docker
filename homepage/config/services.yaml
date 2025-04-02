@@ -18,6 +18,18 @@
         ping: jobs.billbaran.us
 
 - Applications:
+    - n8n:
+        icon: si-n8n
+        href: http://n8n.home
+        description: Workflow automation
+        siteMonitor: http://n8n.home
+      
+    - node-red:
+        icon: si-nodered
+        href: http://nred.home:1880/
+        description: Visual IoT programming
+        siteMonitor: http://n8n.home
+      
     - Open WebUI:
         icon: si-ollama
         href: http://llm.home
@@ -36,12 +48,6 @@
         description: CI/CD pipeline
         siteMonitor: http://jenkins.home:8080
         
-    - n8n:
-        icon: si-n8n
-        href: http://n8n.home
-        description: Workflow automation
-        siteMonitor: http://n8n.home
-      
 - Financial:
     - Firefly III:
         icon: si-fireflyiii
@@ -56,22 +62,34 @@
         siteMonitor: http://ghost.home
 
 - Databases:
-    - PostgreSQL:
-        icon: si-postgresql
-        href: http://psql.home:5432
-        description: Relational DB
+    - TimescaleDB:
+        id: timescale
+        icon: /icons/timescale.svg
+        iconStyle: flat
         ping: psql.home
-        
-    - KeyDB:
-        icon: si-redis
-        description: KeyVal DB
-        ping: keydb.home
+        description: Relational DB
       
+    - Minio:
+        icon: si-minio
+        href: http://minio.home:9001/login
+        description: Object DB
+        siteMonitor: http://qdrant.home:6333
+        
     - Qdrant:
         icon: /icons/qdrant-icon.png
         href: http://qdrant.home:6333/dashboard/#/collections
         description: Vector DB
         siteMonitor: http://qdrant.home:6333
+      
+    - Valkey:
+        icon: sh-valkey-light
+        description: Key/Value Stor
+        ping: key.home
+      
+    - Mongo:
+        icon: si-mongodb
+        description: Document DB
+        ping: mongo.home
 
 - Services:
     - Portainer:
@@ -80,6 +98,12 @@
         description: Docker management
         siteMonitor: http://port.home:443
       
+    - RabbitMQ:
+        icon: si-rabbitmq
+        href: http://rmq.home:15672/
+        description: Message Queue
+        siteMonitor: http://rmq.home:15672
+        
     - CoreDNS:
         icon: mdi-dns
         description: DNS server
