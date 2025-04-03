@@ -1,7 +1,7 @@
 services:
   frpc-n8n:
     container_name: frpc-n8n
-    image: snowdreamtech/frpc:latest
+    image: snowdreamtech/frpc:0.61.2
     restart: always
     volumes:
       - /var/home/core/frpc-n8n/frpc.toml:/etc/frp/frpc.toml:ro
@@ -13,3 +13,7 @@ services:
     networks:
       app-network:
         ipv4_address: 192.168.40.20
+
+networks:
+  app-network:
+    external: true
