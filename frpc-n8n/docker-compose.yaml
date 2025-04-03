@@ -1,14 +1,15 @@
-frpc-n8n:
-  container_name: frpc-n8n
-  image: snowdreamtech/frpc:latest
-  restart: always
-  volumes:
-    - /var/home/core/frpc-n8n/frpc.toml:/etc/frp/frpc.toml:ro
-    - /var/home/core/frpc-n8n/certs/client.crt:/etc/frp/certs/client.crt:ro
-    - /var/home/core/frpc-n8n/certs/client.key:/etc/frp/certs/client.key:ro
-    - /var/home/core/frpc-n8n/certs/ca.crt:/etc/frp/certs/ca.crt:ro
-  dns:
-    - 192.168.40.5
-  networks:
-    app-network:
-      ipv4_address: 192.168.40.20
+services:
+  frpc-n8n:
+    container_name: frpc-n8n
+    image: snowdreamtech/frpc:latest
+    restart: always
+    volumes:
+      - /var/home/core/frpc-n8n/frpc.toml:/etc/frp/frpc.toml:ro
+      - /var/home/core/frpc-n8n/certs/client.crt:/etc/frp/certs/client.crt:ro
+      - /var/home/core/frpc-n8n/certs/client.key:/etc/frp/certs/client.key:ro
+      - /var/home/core/frpc-n8n/certs/ca.crt:/etc/frp/certs/ca.crt:ro
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.20
