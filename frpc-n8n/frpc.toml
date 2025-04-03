@@ -1,4 +1,4 @@
-serverAddr = "${FRP_HOST}"
+serverAddr = "{{ .Envs.FRP_HOST }}"
 serverPort = 7000
 #log.to = "/var/log/frpc.log"
 log.level = "info"
@@ -6,11 +6,11 @@ transport.tls.enable = true
 transport.tls.certFile = "/etc/frp/certs/client.crt"
 transport.tls.keyFile = "/etc/frp/certs/client.key"
 transport.tls.trustedCaFile = "/etc/frp/certs/ca.crt"
-auth.token = "${FRP_AUTH_TOKEN}"
+auth.token = "{{ .Envs.FRP_AUTH_TOKEN }}"
 
 [[proxies]]
 name = "telegram-bot"
 type = "http"
 localIP = "n8n.home"
 localPort = 80
-customDomains = ["${BOT_DOMAIN}"]
+customDomains = ["{{ .Envs.BOT_DOMAIN  }}"]
