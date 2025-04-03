@@ -50,7 +50,7 @@ layout:
     columns: 3
   Applications:
     style: row
-    columns: 2
+    columns: 3
   Financial:
     style: row
     columns: 2
@@ -59,8 +59,8 @@ layout:
     columns: 3
   Services:
     style: row
-    columns: 2
+    columns: 3
   External:
     style: row
-    columns: 1
+    columns: 3
 

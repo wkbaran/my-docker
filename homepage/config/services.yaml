@@ -27,7 +27,7 @@
     - node-red:
         icon: si-nodered
         href: http://nred.home:1880/
-        description: Visual IoT programming
+        description: Visual IoT orchestration
         siteMonitor: http://n8n.home
       
     - Open WebUI:
