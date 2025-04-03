@@ -1,16 +1,16 @@
-serverAddr = "frp.billbaran.us"
+serverAddr = "${FRP_HOST}"
 serverPort = 7000
-log.to = "/var/log/frpc.log"
+#log.to = "/var/log/frpc.log"
 log.level = "info"
 transport.tls.enable = true
 transport.tls.certFile = "/etc/frp/certs/client.crt"
 transport.tls.keyFile = "/etc/frp/certs/client.key"
 transport.tls.trustedCaFile = "/etc/frp/certs/ca.crt"
-auth.token = "dkHQx2vHf6kgvqZuPK6W1SvmzSOzwFTMTja5sc1kqWS8k9O8MLDe2A2oQW1ypsl9"
+auth.token = "${FRP_AUTH_TOKEN}"
 
 [[proxies]]
 name = "telegram-bot"
 type = "http"
 localIP = "n8n.home"
 localPort = 80
-customDomains = ["frp.billbaran.us"]
+customDomains = ["${BOT_DOMAIN}"]

@@ -3,6 +3,8 @@ services:
     container_name: frpc-n8n
     image: snowdreamtech/frpc:0.61.2
     restart: always
+    environment:
+      - FRP_AUTH_TOKEN
     volumes:
       - /var/home/core/frpc-n8n/frpc.toml:/etc/frp/frpc.toml:ro
       - /var/home/core/frpc-n8n/certs/client.crt:/etc/frp/certs/client.crt:ro
