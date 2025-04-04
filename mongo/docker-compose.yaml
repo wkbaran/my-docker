@@ -2,6 +2,7 @@ services:
   mongodb:
     image: mongo:8.0.6
     container_name: mongo
+    restart: unless-stopped
     # ports:   # Not needed for macvlan
     #   - '27017:27017'
     volumes:

@@ -1,6 +1,8 @@
 services:
   node-red:
     image: nodered/node-red:4.0.9-22
+    container_name: node-red
+    restart: unless-stopped
     environment:
       - TZ=${TZ}
 #    ports:    # Don't need for macvlan
