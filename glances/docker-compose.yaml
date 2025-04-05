@@ -19,6 +19,8 @@ services:
     # ports: # not needed for macvlan
     #   - "61208:61208"
     #   - "61209:61209"
+    labels:
+      - "coredns.dockerdiscovery.host=glances.home"
 
 networks:
   app-network:
