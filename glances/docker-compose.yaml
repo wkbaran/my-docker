@@ -1,7 +1,7 @@
 services:
   glances:
     container_name: glances
-    image: nicolargo/glances:4.3.1
+    image: nicolargo/glances:4.3.1-full
     restart: unless-stopped
     # Gives Glances full visibility into host-level processes
     pid: "host"
