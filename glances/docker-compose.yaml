@@ -1,0 +1,26 @@
+services:
+  glances:
+    container_name: glances
+    image: nicolargo/glances:4.3.1
+    restart: unless-stopped
+    # Gives Glances full visibility into host-level processes
+    pid: "host"
+    environment:
+      - TZ
+    # Mount the Docker socket read-only so Glances can monitor containers
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.21
+    # Set a custom DNS if you want to match your other containers
+    dns:
+      - 192.168.40.5
+    # ports: # not needed for macvlan
+    #   - "61208:61208"
+    #   - "61209:61209"
+
+networks:
+  app-network:
+    external: true
+
