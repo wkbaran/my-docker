@@ -16,6 +16,7 @@ services:
       - N8N_HOST
       - N8N_PORT
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+      - N8N_RUNNERS_ENABLED=true
     # ports:  # Not needed for macvlan
     #   - 5678:5678
     volumes:
