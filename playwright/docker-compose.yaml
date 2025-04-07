@@ -22,7 +22,7 @@ services:
       - DISPLAY=:0
       - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
       - PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-    command: /bin/sh -c "npx playwright run-server --port 3000 --host 0.0.0.0"
+    command: /bin/sh -c "cd /ms-playwright && PLAYWRIGHT_BROWSERS_PATH=/ms-playwright npx -y playwright@1.48.2 run-server --port 3000 --host 0.0.0.0"
     user: pwuser
 
 volumes:
