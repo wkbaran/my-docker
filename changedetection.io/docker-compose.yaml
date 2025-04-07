@@ -14,6 +14,8 @@ services:
       - MAX_REQUESTS_PER_WORKER=10
       # Default time between checks (in seconds)
       - CHECK_INTERVAL=3600
+      #- WEBDRIVER_URL=http://${WEBDRIVER_HOST}:4444/wd/hub
+      - PLAYWRIGHT_DRIVER_URL=ws://${PLAYWRIGHT_HOST}:3000/?stealth=1&--disable-web-security=true
     labels:
       - "coredns.dockerdiscovery.host=changes.home"
     dns:
