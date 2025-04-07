@@ -1,6 +1,6 @@
 services:
   playwright:
-    image: mcr.microsoft.com/playwright:v1.51.1-noble
+    image: mcr.microsoft.com/playwright:v1.48.2
     container_name: playwright
     hostname: webdriver
     shm_size: 2g
