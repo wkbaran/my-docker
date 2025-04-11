@@ -29,3 +29,16 @@
     cache: 5 # Time in minutes to cache API responses, to stay within limits
     format: # optional, Intl.NumberFormat options
       maximumFractionDigits: 1
+
+- stocks:
+    provider: finnhub
+    color: true # optional, defaults to true
+    cache: 2 # optional, default caches results for 1 minute
+    watchlist:
+      - SPY
+      - QQQ
+      - IWM
+      - AMD
+      - TSLA
+      - SOFI
+      - NVDA

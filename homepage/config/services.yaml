@@ -5,6 +5,7 @@
     - NUC1:
         icon: si-docker
         description: Primary
+        href: http://port.home:443/#!/1/docker/dashboard
         ping: nuc1.home
 
     - Raspberry Pi:
@@ -15,26 +16,21 @@
     - AWS:
         icon: si-amazonec2
         description: Cloud Jobs
+        href: http://port.home:443/#!/2/docker/dashboard
         ping: jobs.billbaran.us
 
 - Applications:
-    - n8n:
-        icon: si-n8n
-        href: http://n8n.home
-        description: Workflow automation
-        siteMonitor: http://n8n.home
-      
-    - node-red:
-        icon: si-nodered
-        href: http://nred.home:1880/
-        description: Visual IoT orchestration
-        siteMonitor: http://n8n.home
-      
     - Open WebUI:
         icon: si-ollama
         href: http://llm.home
         description: LLM interface
         siteMonitor: http://llm.home
+      
+    - n8n:
+        icon: si-n8n
+        href: http://n8n.home
+        description: Workflow automation
+        siteMonitor: http://n8n.home
       
     - Change Detection:
         icon: sh-changedetection
@@ -47,19 +43,53 @@
         href: http://jenkins.home:8080
         description: CI/CD pipeline
         siteMonitor: http://jenkins.home:8080
+
+    - Home Assistant:
+        icon: si-homeassistant
+        href: http://ctrl.home:8123
+        description: Home automation platform
+        siteMonitor: http://ctrl.home:8123
         
-- Financial:
-    - Firefly III:
-        icon: si-fireflyiii
-        href: http://ff3.home:8080/
-        description: Financial tracker
-        siteMonitor: http://ff3.home:8080
+    - node-red:
+        icon: si-nodered
+        href: http://nred.home:1880/
+        description: Visual IoT orchestration
+        siteMonitor: http://n8n.home
+      
+- Services:
+    - Portainer:
+        icon: si-portainer
+        href: http://port.home:443
+        description: Docker management
+        siteMonitor: http://port.home:443
         
-    - Ghostfolio:
-        icon: si-ghostery
-        href: http://ghost.home
-        description: Wealth tracker
-        siteMonitor: http://ghost.home
+    - slzb-06:
+        icon: si-zigbee
+        description: Zigbee Coordinator
+        siteMonitor: http://192.168.50.76/
+        
+    - CoreDNS:
+        icon: mdi-dns
+        description: DNS server
+        ping: coredns.home
+      
+    - RabbitMQ:
+        icon: si-rabbitmq
+        href: http://rmq.home:15672/
+        description: Message Queue
+        siteMonitor: http://rmq.home:15672
+
+    - Nginx:
+        icon: si-nginx
+        href: http://web.home
+        description: Web server
+        siteMonitor: http://web.home
+        
+    - Wireguard:
+        icon: si-wireguard
+        href: http://vpn.home:51821/
+        description: VPN server
+        siteMonitor: http://vpn.home:51821
 
 - Databases:
     - TimescaleDB:
@@ -91,39 +121,21 @@
         description: Document DB
         ping: mongo.home
 
-- Services:
-    - Portainer:
-        icon: si-portainer
-        href: http://port.home:443
-        description: Docker management
-        siteMonitor: http://port.home:443
-      
-    - RabbitMQ:
-        icon: si-rabbitmq
-        href: http://rmq.home:15672/
-        description: Message Queue
-        siteMonitor: http://rmq.home:15672
-        
-    - CoreDNS:
-        icon: mdi-dns
-        description: DNS server
-        ping: coredns.home
-
-    - Nginx:
-        icon: si-nginx
-        href: http://web.home
-        description: Web server
-        siteMonitor: http://web.home
-        
-    - Wireguard:
-        icon: si-wireguard
-        href: http://vpn.home:51821/
-        description: VPN server
-        siteMonitor: http://vpn.home:51821
-
 - External:
     - ntfy:
         icon: si-ntfy
         href: https://ntfy.billbaran.us
         description: Notification service
         siteMonitor: https://ntfy.billbaran.us
+
+    - traefik:
+        icon: si-traefikproxy
+        href: https://jobs.billbaran.us
+        description: Reverse Proxy
+        siteMonitor: https://jobs.billbaran.us
+
+    - router:
+        icon: si-republicofgamers
+        href: https://192.168.50.1:8443/Main_Login.asp
+        description: WAN Router
+        siteMonitor: https://192.168.50.1:8443/

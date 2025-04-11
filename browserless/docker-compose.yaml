@@ -1,0 +1,50 @@
+services:
+  browserless:
+    image: browserless/chrome:1.60-chrome-stable
+    container_name: browserless
+    hostname: browserless
+    shm_size: 4g
+    ports:
+      - "3000:3000"  # Browserless web server port
+    volumes:
+      - browserless_data:/home/chromium
+    restart: unless-stopped
+    labels:
+      - "coredns.dockerdiscovery.host=browserless.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.21
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1024
+      - SCREEN_DEPTH=16
+      - ENABLE_DEBUGGER=false
+      - PROXY_TIMEOUT=120000
+      - ENABLE_ROUTE_SCREEN_SHOT=true
+
+      - CHROME_REFRESH_TIME=1800000
+      - CONNECTION_TIMEOUT=120000
+      - MAX_CONCURRENT_SESSIONS=6
+      - KEEP_ALIVE=true
+      - PREBOOT_CHROME=true
+
+      - ENABLE_CORS=true
+      - ENABLE_API_GET=true
+      - WORKSPACE_DELETE_EXPIRED=false
+      - WORKSPACE_EXPIRE_DAYS=7
+
+      - DEFAULT_BLOCK_ADS=true
+      - DEFAULT_STEALTH=true
+      - DEFAULT_IGNORE_HTTPS_ERRORS=true
+      - FUNCTION_ENABLE_INCOGNITO_MODE=true
+#      - CHROME_STABLE_LAUNCH_FLAGS=["--disable-dev-shm-usage", "--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu", "--no-first-run", "--disable-extensions"]
+      - CHROME_STABLE_LAUNCH_FLAGS=["--disable-dev-shm-usage", "--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu", "--no-first-run", "--disable-extensions", "--disable-background-networking", "--disable-background-timer-throttling", "--disable-backgrounding-occluded-windows", "--disable-breakpad", "--disable-component-extensions-with-background-pages", "--disable-features=TranslateUI,BlinkGenPropertyTrees"]
+
+volumes:
+  browserless_data:
+
+networks:
+  app-network:
+    external: true

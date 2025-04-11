@@ -1,0 +1,29 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: always
+    environment:
+      - TZ=America/Denver
+    volumes:
+      - homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+#      - /run/dbus:/run/dbus:ro  # For Bluetooth access
+#    devices:
+      # Bluetooh radio
+     # - /dev/ttyUSB0:/dev/ttyUSB0  
+    privileged: true
+    labels:
+      - "coredns.dockerdiscovery.host=ctrl.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.14
+
+volumes:
+  homeassistant:
+
+networks:
+  app-network:
+    external: true

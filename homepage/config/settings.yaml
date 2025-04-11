@@ -51,13 +51,10 @@ layout:
   Applications:
     style: row
     columns: 3
-  Financial:
-    style: row
-    columns: 2
-  Databases:
+  Services:
     style: row
     columns: 3
-  Services:
+  Databases:
     style: row
     columns: 3
   External:
