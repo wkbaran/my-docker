@@ -1,6 +1,6 @@
 services:
   changedetection:
-    image: dgtlmoon/changedetection.io:0.49.12
+    image: dgtlmoon/changedetection.io:0.49.13
     container_name: changedetection
     hostname: changes
     volumes:
@@ -10,12 +10,11 @@ services:
       - PORT=80
       - BASE_URL=/
       # Allows you to handle large webpage snapshots
-      - FETCH_WORKERS=4
+      - FETCH_WORKERS=8
       - MAX_REQUESTS_PER_WORKER=10
       # Default time between checks (in seconds)
       - CHECK_INTERVAL=3600
-      #- WEBDRIVER_URL=http://${WEBDRIVER_HOST}:4444/wd/hub
-      - PLAYWRIGHT_DRIVER_URL=ws://${PLAYWRIGHT_HOST}:3000/?stealth=1&--disable-web-security=true
+      - PLAYWRIGHT_DRIVER_URL=ws://${BROWSERLESS_HOST}:3000/?--disable-web-security=true&timeout=120000&blockAds=true
     labels:
       - "coredns.dockerdiscovery.host=changes.home"
     dns:
