@@ -13,7 +13,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       app-network:
-        ipv4_address: 192.168.40.21
+        ipv4_address: 192.168.40.15
     # Set a custom DNS if you want to match your other containers
     dns:
       - 192.168.40.5
