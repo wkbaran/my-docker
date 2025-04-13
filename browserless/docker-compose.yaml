@@ -17,6 +17,7 @@ services:
       app-network:
         ipv4_address: 192.168.40.21
     environment:
+      - TOKEN
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1024
       - SCREEN_DEPTH=16
