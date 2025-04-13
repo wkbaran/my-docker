@@ -51,7 +51,8 @@
         siteMonitor: http://changes.home
       
     - Browserless:
-        icon: /icons/browserless.svg
+        icon: /icons/browserless-light.svg
+        iconStyle: flat
         href: http://browserless.home:3000/
         description: Browser automation
         siteMonitor: http://browserless.home:3000/
