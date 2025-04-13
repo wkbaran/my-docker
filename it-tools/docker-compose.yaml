@@ -1,0 +1,19 @@
+services:
+  it-tools:
+    image: corentinth/it-tools:2024.10.22-7ca5933
+    container_name: it-tools
+    hostname: it-tools
+    restart: unless-stopped
+    #ports:  # Not needed for macvlan
+    #  - "8080:80"
+    labels:
+      - "coredns.dockerdiscovery.host=itt.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.22
+
+networks:
+  app-network:
+    external: true

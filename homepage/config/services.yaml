@@ -7,6 +7,12 @@
         description: Primary
         href: http://port.home:443/#!/1/docker/dashboard
         ping: nuc1.home
+        widget:
+          type: glances
+          url: http://glances.home:61208
+          version: 4 
+          metric: cpu
+          pointsLimit: 45
 
     - Raspberry Pi:
         icon: mdi-raspberry-pi
@@ -18,6 +24,12 @@
         description: Cloud Jobs
         href: http://port.home:443/#!/2/docker/dashboard
         ping: jobs.billbaran.us
+        widget:
+          type: glances
+          url: http://jobs.billbaran.us:61208
+          version: 4 
+          metric: cpu
+          pointsLimit: 45
 
 - Applications:
     - Open WebUI:
@@ -38,6 +50,12 @@
         description: Website change monitoring
         siteMonitor: http://changes.home
       
+    - Browserless:
+        icon: /icons/browserless.svg
+        href: http://browserless.home:3000/
+        description: Browser automation
+        siteMonitor: http://browserless.home:3000/
+
     - Jenkins:
         icon: si-jenkins
         href: http://jenkins.home:8080
@@ -73,6 +91,11 @@
         description: DNS server
         ping: coredns.home
       
+    - IT-Tools:
+        icon: it-tools-light
+        description: IT Tools
+        ping: itt.home
+      
     - RabbitMQ:
         icon: si-rabbitmq
         href: http://rmq.home:15672/
@@ -103,7 +126,7 @@
         icon: si-minio
         href: http://minio.home:9001/login
         description: Object DB
-        siteMonitor: http://qdrant.home:6333
+        siteMonitor: http://minio.home:9001/login
         
     - Qdrant:
         icon: /icons/qdrant-icon.png

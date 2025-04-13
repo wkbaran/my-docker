@@ -4,8 +4,8 @@ services:
     container_name: browserless
     hostname: browserless
     shm_size: 4g
-    ports:
-      - "3000:3000"  # Browserless web server port
+    #ports:  # Not needed for macvlan
+    #  - "3000:3000"  # Browserless web server port
     volumes:
       - browserless_data:/home/chromium
     restart: unless-stopped
