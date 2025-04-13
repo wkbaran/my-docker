@@ -14,7 +14,7 @@ services:
       - MAX_REQUESTS_PER_WORKER=10
       # Default time between checks (in seconds)
       - CHECK_INTERVAL=3600
-      - PLAYWRIGHT_DRIVER_URL=ws://${BROWSERLESS_HOST}:3000/?--disable-web-security=true&timeout=120000&blockAds=true
+      - PLAYWRIGHT_DRIVER_URL=ws://${BROWSERLESS_HOST}:3000/?token=${BROWSERLESS_TOKEN}&--disable-web-security=true&timeout=120000&blockAds=true
     labels:
       - "coredns.dockerdiscovery.host=changes.home"
     dns:
