@@ -1,0 +1,27 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.21-openssl
+    container_name: msqtto
+    hostname: msqto
+    restart: unless-stopped
+    #ports:  # not needed for macvlan
+    #   - "1883:1883"
+    #   - "9001:9001" # Optional: for WebSockets
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - /var/home/core/mosquitto/config:/mosquitto/config
+      - /var/home/core/mosquitto/log:/mosquitto/log
+    labels:
+      - "coredns.dockerdiscovery.host=mqtt.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.23
+
+volumes:
+  mosquitto_data:
+
+networks:
+  app-network:
+    external: true
