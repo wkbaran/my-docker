@@ -10,7 +10,7 @@ services:
       - browserless_data:/home/chromium
     restart: unless-stopped
     labels:
-      - "coredns.dockerdiscovery.host=browserless.home"
+      - "coredns.dockerdiscovery.host=brwsr.home"
     dns:
       - 192.168.40.5
     networks:
