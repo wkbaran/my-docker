@@ -1,0 +1,27 @@
+services:
+  wallos:
+    container_name: wallos
+    image: bellamy/wallos:2.52.0
+#    ports:  # not needed for macvlan
+#      - "8282:80/tcp"
+    environment:
+      TZ: '${TIMEZONE}'
+    volumes:
+      - 'wallos-db:/var/www/html/db'
+      - 'wallos-logos:/var/www/html/images/uploads/logos'
+    restart: unless-stopped
+    labels:
+      - "coredns.dockerdiscovery.host=wallos.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.24
+
+volumes:
+  wallos-db:
+  wallos-logos:
+
+networks:
+  app-network:
+    external: true

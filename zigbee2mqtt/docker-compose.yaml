@@ -1,0 +1,25 @@
+services:
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: ghcr.io/koenkk/zigbee2mqtt:2.2.1
+    restart: always
+    environment:
+      - TZ=America/Denver
+    volumes:
+      - zigbee2mqtt:/app/data
+      # - /run/udev:/run/udev:ro # my zibgee coordinator is ip
+    privileged: true
+    labels:
+      - "coredns.dockerdiscovery.host=zigbee.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.24
+
+volumes:
+  zigbee2mqtt:
+
+networks:
+  app-network:
+    external: true

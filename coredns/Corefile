@@ -9,9 +9,12 @@ home {
         192.168.50.49 pi4.home
         192.168.50.178 dtop.home
         192.168.50.207 nuc1.home
+        192.168.50.76 slzb-06.home
+
         192.168.40.5 coredns.home
         192.168.40.7 time.home  # alias for psql.home
-        192.168.40.14 ff3.home
+        # 192.168.40.12 vpn.home  # Has issues picking up labels
+
         fallthrough
     }
     docker {

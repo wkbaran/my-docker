@@ -37,6 +37,12 @@
         href: http://llm.home
         description: LLM interface
         siteMonitor: http://llm.home
+
+    - wallos:
+        icon: sh-wallos
+        href: http://wallos.home
+        description: Subscription tracker
+        siteMonitor: http://wallos.home
       
     - n8n:
         icon: si-n8n
