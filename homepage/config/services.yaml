@@ -44,6 +44,12 @@
         description: Recipe tracker & meal planner
         siteMonitor: http://meal.home
 
+    - kavita:
+        icon: sh-kavita
+        href: http://manga.home:5000
+        description: Digital library
+        siteMonitor: http://manga.home:5000
+
     - wallos:
         icon: sh-wallos
         href: http://wallos.home

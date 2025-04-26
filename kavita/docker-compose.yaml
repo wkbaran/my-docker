@@ -1,0 +1,31 @@
+services:
+  kavita:
+    image: jvmilazz0/kavita:0.8.6   # Using the stable branch from the official dockerhub repo.
+    container_name: kavita
+    volumes:
+      - kavita-manga:/manga
+      - kavita-comics:/comics
+      - kavita-books:/books
+      - kavita-config:/kavita/config     # /kavita/config must not be changed
+    environment:
+      - TZ
+    labels:
+      - "coredns.dockerdiscovery.host=manga.home"
+    #ports:
+    #  - "5000:5000"
+    restart: unless-stopped
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.28
+    dns:
+      - 192.168.40.5
+
+volumes:
+  kavita-manga:
+  kavita-comics:
+  kavita-books:
+  kavita-config:
+
+networks:
+  app-network:
+    external: true
