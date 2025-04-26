@@ -38,6 +38,12 @@
         description: LLM interface
         siteMonitor: http://llm.home
 
+    - mealie:
+        icon: si-mealie
+        href: http://meal.home
+        description: Recipe tracker & meal planner
+        siteMonitor: http://meal.home
+
     - wallos:
         icon: sh-wallos
         href: http://wallos.home
@@ -59,7 +65,7 @@
     - Browserless:
         icon: /icons/browserless-light.svg
         iconStyle: flat
-        href: http://browserless.home:3000/
+        href: http://brwsr.home:3000/?token=rf6ZZbzGXjW6DQfAvVqpa81I4fbqz37cS1wH0qFHcWxgPWleBk6oLE9OasjkKWRo
         description: Browser automation
         siteMonitor: http://browserless.home:3000/
 
