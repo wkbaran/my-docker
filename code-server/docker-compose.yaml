@@ -5,6 +5,7 @@ services:
     environment:
       - TZ
       - PASSWORD
+      - SUDO_PASSWORD
       - PROXY_DOMAIN
     volumes:
       - codeserver-config:/config
