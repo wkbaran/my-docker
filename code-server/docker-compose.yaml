@@ -5,6 +5,7 @@ services:
     environment:
       - TZ
       - PASSWORD
+      - PROXY_DOMAIN
     volumes:
       - codeserver-config:/config
       - codeserver-projects:/projects # Optional: Mount a directory for your projects
