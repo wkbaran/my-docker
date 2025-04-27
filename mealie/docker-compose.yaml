@@ -26,6 +26,13 @@ services:
       - POSTGRES_SERVER=meal-pg.home
       - POSTGRES_PORT=5432
       - POSTGRES_DB=mealie
+      - SMTP_HOST
+      - SMTP_PORT
+      - SMTP_FROM_NAME
+      - SMTP_AUTH_STRATEGY
+      - SMTP_FROM_EMAIL
+      - SMTP_USER
+      - SMTP_PASSWORD
     labels:
       - "coredns.dockerdiscovery.host=meal.home"
     networks:
