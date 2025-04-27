@@ -1,0 +1,28 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:4.99.3
+    container_name: code-server
+    environment:
+      - TZ
+      - PASSWORD
+    volumes:
+      - codeserver-config:/config
+      - codeserver-projects:/projects # Optional: Mount a directory for your projects
+    #ports:  # Not needed for macvlan
+    #  - 8443:8443
+    restart: unless-stopped
+    labels:
+      - "coredns.dockerdiscovery.host=code.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.29
+
+volumes:
+  codeserver-config:
+  codeserver-projects:
+
+networks:
+  app-network:
+    external: true
