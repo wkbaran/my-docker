@@ -1,0 +1,20 @@
+services:
+  swagger-editor:
+    image: docker.io/wkbaran/openapi-gui:latest
+    container_name: openapi-gui
+    restart: unless-stopped
+    #ports:    # not needed for macvlan
+    #  - "80:8080"
+    environment:
+      - "PORT=80"
+    labels:
+      - "coredns.dockerdiscovery.host=oapi.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.32
+
+networks:
+  app-network:
+    external: true

@@ -56,30 +56,11 @@
         description: Subscription tracker
         siteMonitor: http://wallos.home
       
-    - n8n:
-        icon: si-n8n
-        href: http://n8n.home
-        description: Workflow automation
-        siteMonitor: http://n8n.home
-      
     - Change Detection:
         icon: sh-changedetection
         href: http://changes.home
         description: Website change monitoring
         siteMonitor: http://changes.home
-      
-    - Browserless:
-        icon: /icons/browserless-light.svg
-        iconStyle: flat
-        href: http://brwsr.home:3000/?token=rf6ZZbzGXjW6DQfAvVqpa81I4fbqz37cS1wH0qFHcWxgPWleBk6oLE9OasjkKWRo
-        description: Browser automation
-        siteMonitor: http://browserless.home:3000/
-
-    - Jenkins:
-        icon: si-jenkins
-        href: http://jenkins.home:8080
-        description: CI/CD pipeline
-        siteMonitor: http://jenkins.home:8080
 
     - Home Assistant:
         icon: si-homeassistant
@@ -87,12 +68,43 @@
         description: Home automation platform
         siteMonitor: http://ctrl.home:8123
         
+- Development:
+    - OpenAPI GUI:
+        icon: si-openapiinitiative
+        href: http://oapi.home/
+        description: OpenAPI GUI
+        siteMonitor: http://oapi.home/
+
+    - Swagger UI:
+        icon: si-openapiinitiative
+        href: http://swui.home/
+        description: Swagger UI
+        siteMonitor: http://swui.home/
+
+    - Swagger Editor:
+        icon: si-openapiinitiative
+        href: http://swed.home/
+        description: Swagger Editor
+        siteMonitor: http://swed.home/
+
+    - Code Server:
+        icon: code
+        href: http://code.home:8443/
+        description: IDE
+        siteMonitor: http://code.home:8443/
+      
+    - n8n:
+        icon: si-n8n
+        href: http://n8n.home
+        description: Workflow automation
+        siteMonitor: http://n8n.home
+      
     - node-red:
         icon: si-nodered
         href: http://nred.home:1880/
         description: Visual IoT orchestration
         siteMonitor: http://n8n.home
-      
+
 - Services:
     - Portainer:
         icon: si-portainer
@@ -134,6 +146,19 @@
         href: http://vpn.home:51821/
         description: VPN server
         siteMonitor: http://vpn.home:51821
+
+    - Jenkins:
+        icon: si-jenkins
+        href: http://jenkins.home:8080
+        description: CI/CD pipeline
+        siteMonitor: http://jenkins.home:8080
+      
+    - Browserless:
+        icon: /icons/browserless-light.svg
+        iconStyle: flat
+        href: http://brwsr.home:3000/?token={{BRWSR_APIKEY}}
+        description: Browser automation
+        siteMonitor: http://browserless.home:3000/
 
 - Databases:
     - TimescaleDB:

@@ -11,6 +11,8 @@ services:
       - HOMEPAGE_CUSTOM_TITLE=NexusCore
       - PORT=80
       - HOMEPAGE_ALLOWED_HOSTS=192.168.40.11,home.home
+      - FINHUB_APIKEY
+      - BRWSR_APIKEY
     volumes:
       - /var/home/core/homepage/config:/app/config:ro
       - /var/home/core/homepage/public/icons:/app/public/icons:ro
