@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: jenkins
-    image: jenkins/jenkins:2.503
+    image: jenkins/jenkins:2.508
     restart: unless-stopped
     volumes:
       - jenkins-data:/var/jenkins_home
