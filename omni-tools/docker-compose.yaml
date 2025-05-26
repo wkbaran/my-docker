@@ -1,0 +1,18 @@
+services:
+  omni-tools:
+    image: iib0011/omni-tools:0.3.0
+    container_name: omni
+    restart: unless-stopped
+    #ports:  # Not needed for macvlan
+    #  - "8080:80"
+    labels:
+      - "coredns.dockerdiscovery.host=omni.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.33
+
+networks:
+  app-network:
+    external: true
