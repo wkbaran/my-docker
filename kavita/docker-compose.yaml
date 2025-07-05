@@ -6,6 +6,7 @@ services:
       - kavita-manga:/manga
       - kavita-comics:/comics
       - kavita-books:/books
+      - kavita-mags:/magazines
       - kavita-config:/kavita/config     # /kavita/config must not be changed
     environment:
       - TZ
@@ -24,6 +25,7 @@ volumes:
   kavita-manga:
   kavita-comics:
   kavita-books:
+  kavita-mags:
   kavita-config:
 
 networks:
