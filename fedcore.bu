@@ -37,6 +37,32 @@ storage:
         id: 0
       group:
         id: 0
+    - path: /etc/sysctl.d/99-bridge-netfilter.conf
+      contents:
+        inline: |
+          net.bridge.bridge-nf-call-iptables=1
+          net.bridge.bridge-nf-call-ip6tables=1
+          net.bridge.bridge-nf-call-arptables=1
+      mode: 0644
+    - path: /etc/systemd/system/setup-macvlan-host.service
+      contents:
+        inline: |
+          [Unit]
+          Description=Setup macvlan host interface
+          After=network.target docker.service
+          Wants=docker.service
+          
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/bin/ip link add macvlan-host link eno1 type macvlan mode bridge
+          ExecStart=/usr/bin/ip addr add 192.168.40.1/24 dev macvlan-host
+          ExecStart=/usr/bin/ip link set macvlan-host up
+          ExecStop=/usr/bin/ip link delete macvlan-host
+          RemainAfterExit=yes
+          
+          [Install]
+          WantedBy=multi-user.target
+      mode: 0644
 systemd:
   units:
     - name: coreos-migrate-to-systemd-resolved.service
