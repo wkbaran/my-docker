@@ -31,7 +31,7 @@ services:
       - 192.168.40.5
     networks:
       app-network:
-        ipv4_address: 192.168.40.35
+        ipv4_address: 192.168.40.36
 
   db:
     image: postgres:15
@@ -45,7 +45,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     networks:
       app-network:
-        ipv4_address: 192.168.40.36
+        ipv4_address: 192.168.40.37
 
   redis:
     image: redis:7
@@ -53,7 +53,7 @@ services:
     restart: unless-stopped
     networks:
       app-network:
-        ipv4_address: 192.168.40.37
+        ipv4_address: 192.168.40.38
 
 networks:
   app-network:
