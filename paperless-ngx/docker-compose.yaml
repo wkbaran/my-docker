@@ -1,0 +1,66 @@
+services:
+  paperless-ngx:
+    image: paperlessngx/paperless-ngx:2.17.1
+    container_name: paperless-ngx
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - paperless_data:/usr/src/paperless/data
+      - paperless_media:/usr/src/paperless/media
+      - paperless_export:/usr/src/paperless/export
+      - /var/home/core/paperless-ngx/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://redis:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_DBNAME: paperless
+      PAPERLESS_DBUSER: paperless
+      PAPERLESS_DBPASS: ${DB_PASSWORD}
+      PAPERLESS_ADMIN_USER: admin
+      PAPERLESS_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      PAPERLESS_SECRET_KEY: ${SECRET_KEY}
+      PAPERLESS_URL: http://paperless.home
+      PAPERLESS_ALLOWED_HOSTS: paperless.home,192.168.40.35
+      PAPERLESS_PORT: 80
+      PAPERLESS_TIME_ZONE: America/Denver
+      PAPERLESS_OCR_LANGUAGE: eng
+    labels:
+      - "coredns.dockerdiscovery.host=paperless.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.35
+
+  db:
+    image: postgres:15
+    container_name: paperless-db
+    restart: unless-stopped
+    volumes:
+      - paperless_pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.36
+
+  redis:
+    image: redis:7
+    container_name: paperless-redis
+    restart: unless-stopped
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.37
+
+networks:
+  app-network:
+    external: true
+
+volumes:
+  paperless_data:
+  paperless_media:
+  paperless_export:
+  paperless_pgdata:

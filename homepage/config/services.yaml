@@ -32,6 +32,18 @@
           pointsLimit: 45
 
 - Applications:
+    - Omni-Tools:
+        icon: sh-omnitools-light
+        href: http://omni.home/
+        description: Omni Tools
+        ping: omni.home
+      
+    - IT-Tools:
+        icon: it-tools-light
+        href: http://itt.home/
+        description: IT Tools
+        ping: itt.home
+      
     - Open WebUI:
         icon: si-ollama
         href: http://llm.home
@@ -122,12 +134,6 @@
         icon: mdi-dns
         description: DNS server
         ping: coredns.home
-      
-    - IT-Tools:
-        icon: it-tools-light
-        href: http://itt.home/
-        description: IT Tools
-        ping: itt.home
       
     - RabbitMQ:
         icon: si-rabbitmq
