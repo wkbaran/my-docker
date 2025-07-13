@@ -14,7 +14,7 @@ services:
       - 192.168.40.5
     networks:
       app-network:
-        ipv4_address: 192.168.40.10
+        ipv4_address: 192.168.40.7
 
 volumes:
   open-webui-data:
