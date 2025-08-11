@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  youtrack:
+    container_name: youtrack
+    image: jetbrains/youtrack:2025.1
+    restart: unless-stopped
+    environment:
+      - TZ=America/Denver
+    user: "1000:1000"
+    volumes:
+      # High-churn state on named volumes (no SELinux hassle)
+      - youtrack-data:/opt/youtrack/data
+      - youtrack-logs:/opt/youtrack/logs
+      # Host-editable config (exclusive relabel)
+      - /var/home/core/youtrack/conf:/opt/youtrack/conf:Z
+      # Backups visible to other containers/host tools (shared relabel)
+      - /var/home/core/youtrack/backups:/opt/youtrack/backups:z
+
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.39
+    dns:
+      - 192.168.40.5
+    labels:
+      - "coredns.dockerdiscovery.host=youtrack.home"
+
+networks:
+  app-network:
+    external: true
+
+volumes:
+  youtrack-data:
+  youtrack-logs:
+
