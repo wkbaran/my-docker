@@ -3,7 +3,7 @@ version: "3.8"
 services:
   youtrack:
     container_name: youtrack
-    image: jetbrains/youtrack:2025.1
+    image: jetbrains/youtrack:2025.2.89748
     restart: unless-stopped
     environment:
       - TZ=America/Denver
