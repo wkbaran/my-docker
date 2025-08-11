@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=America/Denver
-    user: "1000:1000"
+    user: "13001:13001"
     volumes:
       # High-churn state on named volumes (no SELinux hassle)
       - youtrack-data:/opt/youtrack/data
