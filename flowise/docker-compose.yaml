@@ -6,14 +6,16 @@ services:
     volumes:
       - flowise-data:/app/data
       - flowise-storage:/app/storage
+      - /var/home/core/flowise/logs:/app/logs
+      - /var/home/core/flowise/secrets:/app/secrets
     environment:
       - JWT_AUTH_TOKEN_SECRET
       - JWT_REFRESH_TOKEN_SECRET
-      - LOG_PATH
-      - SECRETKEY_PATH
       - PORT=80
       - BLOB_STORAGE_PATH=/app/storage
       - DATABASE_PATH=/app/data
+      - LOG_PATH=/app/logs
+      - SECRETKEY_PATH=/app/secrets
       - APP_URL=http://flow.home
     labels:
       - "coredns.dockerdiscovery.host=flow.home"
