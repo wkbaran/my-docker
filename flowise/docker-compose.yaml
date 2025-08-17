@@ -1,0 +1,32 @@
+services:
+  flowise:
+    image: flowiseai/flowise:3.0.5
+    container_name: flowise
+    restart: unless-stopped
+    volumes:
+      - flowise-data:/app/data
+      - flowise-storage:/app/storage
+    environment:
+      - JWT_AUTH_TOKEN_SECRET
+      - JWT_REFRESH_TOKEN_SECRET
+      - LOG_PATH
+      - SECRETKEY_PATH
+      - PORT=80
+      - BLOB_STORAGE_PATH=/app/storage
+      - DATABASE_PATH=/app/data
+      - APP_URL=http://flow.home
+    labels:
+      - "coredns.dockerdiscovery.host=flow.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.40
+
+volumes:
+  flowise-data:
+  flowise-storage:
+
+networks:
+  app-network:
+    external: true
