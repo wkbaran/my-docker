@@ -1,0 +1,78 @@
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:v1.75.5-stable
+    restart: unless-stopped
+#    volumes:
+#      - ./config.yaml:/app/config.yaml
+#    ports:
+#      - "4000:4000"
+    environment:
+      - DATABASE_URL
+      - LITELLM_MASTER_KEY
+      - STORE_MODEL_IN_DB=True
+      - PORT=80
+    depends_on:
+      - db
+#    healthcheck:
+#      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 http://localhost:4000/health/liveliness || exit 1" ]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 40s
+    labels:
+      - "coredns.dockerdiscovery.host=lite.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.41
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    container_name: litellm_db
+    environment:
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB=litellm
+      - POSTGRES_USER=llmproxy
+#    ports:
+#      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d litellm -U llmproxy"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.42
+
+  prometheus:
+    image: prom/prometheus
+    restart: unless-stopped
+    volumes:
+      - prometheus_data:/prometheus
+      - /var/home/core/litellm/prometheus.yml:/etc/prometheus/prometheus.yml
+#    ports:
+#      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=15d"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.43
+
+volumes:
+  prometheus_data:
+  postgres_data:
+    name: litellm_postgres_data
+
+networks:
+  app-network:
+    external: true
