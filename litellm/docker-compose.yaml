@@ -44,6 +44,8 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
+    labels:
+      - "coredns.dockerdiscovery.host=litedb.home"
     dns:
       - 192.168.40.5
     networks:
@@ -62,6 +64,8 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
       - "--storage.tsdb.retention.time=15d"
+    labels:
+      - "coredns.dockerdiscovery.host=liteprom.home"
     dns:
       - 192.168.40.5
     networks:
