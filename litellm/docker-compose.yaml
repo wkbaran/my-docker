@@ -10,7 +10,6 @@ services:
       - DATABASE_URL
       - LITELLM_MASTER_KEY
       - STORE_MODEL_IN_DB=True
-      - PORT=80
     depends_on:
       - db
 #    healthcheck:
