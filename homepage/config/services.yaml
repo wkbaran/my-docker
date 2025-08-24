@@ -33,7 +33,7 @@
 
 - Applications:
     - Omni-Tools:
-        icon: sh-omnitools-light
+        icon: /icons/omnitools.svg
         href: http://omni.home/
         description: Omni Tools
         ping: omni.home
@@ -43,12 +43,6 @@
         href: http://itt.home/
         description: IT Tools
         ping: itt.home
-      
-    - Open WebUI:
-        icon: si-ollama
-        href: http://llm.home
-        description: LLM interface
-        siteMonitor: http://llm.home
 
     - mealie:
         icon: si-mealie
@@ -74,30 +68,43 @@
         description: Website change monitoring
         siteMonitor: http://changes.home
 
-    - Home Assistant:
-        icon: si-homeassistant
-        href: http://ctrl.home:8123
-        description: Home automation platform
-        siteMonitor: http://ctrl.home:8123
-        
+- Artificial Intelligence:
+    - Open WebUI:
+        icon: si-ollama
+        href: http://llm.home
+        description: LLM interface
+        siteMonitor: http://llm.home
+      
+    - Flowise:
+        icon: flowise
+        href: http://flow.home/
+        description: Flowise
+        siteMonitor: http://flow.home/
+      
+    - LiteLLM:
+        icon: /icons/bullettrain.svg
+        href: http://lite.home:4000/
+        description: Flowise
+        siteMonitor: http://lite.home:4000/
+
 - Development:
-    - OpenAPI GUI:
-        icon: si-openapiinitiative
-        href: http://oapi.home/
-        description: OpenAPI GUI
-        siteMonitor: http://oapi.home/
-
-    - Swagger UI:
-        icon: si-openapiinitiative
-        href: http://swui.home/
-        description: Swagger UI
-        siteMonitor: http://swui.home/
-
-    - Swagger Editor:
-        icon: si-openapiinitiative
-        href: http://swed.home/
-        description: Swagger Editor
-        siteMonitor: http://swed.home/
+#    - OpenAPI GUI:
+#        icon: si-openapiinitiative
+#        href: http://oapi.home/
+#        description: OpenAPI GUI
+#        siteMonitor: http://oapi.home/
+#
+#    - Swagger UI:
+#        icon: si-openapiinitiative
+#        href: http://swui.home/
+#        description: Swagger UI
+#        siteMonitor: http://swui.home/
+#
+#    - Swagger Editor:
+#        icon: si-openapiinitiative
+#        href: http://swed.home/
+#        description: Swagger Editor
+#        siteMonitor: http://swed.home/
 
     - Code Server:
         icon: code
@@ -111,11 +118,11 @@
         description: Workflow automation
         siteMonitor: http://n8n.home
       
-    - node-red:
-        icon: si-nodered
-        href: http://nred.home:1880/
-        description: Visual IoT orchestration
-        siteMonitor: http://n8n.home
+#    - node-red:
+#        icon: si-nodered
+#        href: http://nred.home:1880/
+#        description: Visual IoT orchestration
+#        siteMonitor: http://n8n.home
 
 - Services:
     - Portainer:
@@ -124,28 +131,28 @@
         description: Docker management
         siteMonitor: http://port.home:443
         
-    - slzb-06:
-        icon: si-zigbee
-        href: http://192.168.50.76/
-        description: Zigbee Coordinator
-        siteMonitor: http://192.168.50.76/
+#    - slzb-06:
+#        icon: si-zigbee
+#        href: http://192.168.50.76/
+#        description: Zigbee Coordinator
+#        siteMonitor: http://192.168.50.76/
         
     - CoreDNS:
         icon: mdi-dns
         description: DNS server
         ping: coredns.home
       
-    - RabbitMQ:
-        icon: si-rabbitmq
-        href: http://rmq.home:15672/
-        description: Message Queue
-        siteMonitor: http://rmq.home:15672
+#    - RabbitMQ:
+#        icon: si-rabbitmq
+#        href: http://rmq.home:15672/
+#        description: Message Queue
+#        siteMonitor: http://rmq.home:15672
 
-    - Nginx:
-        icon: si-nginx
-        href: http://web.home
-        description: Web server
-        siteMonitor: http://web.home
+#    - Nginx:
+#        icon: si-nginx
+#        href: http://web.home
+#        description: Web server
+#        siteMonitor: http://web.home
         
     - Wireguard:
         icon: si-wireguard
@@ -162,39 +169,45 @@
     - Browserless:
         icon: /icons/browserless-light.svg
         iconStyle: flat
-        href: http://brwsr.home:3000/?token={{BRWSR_APIKEY}}
+        href: http://brwsr.home:3000/?token=rf6ZZbzGXjW6DQfAvVqpa81I4fbqz37cS1wH0qFHcWxgPWleBk6oLE9OasjkKWRo
         description: Browser automation
         siteMonitor: http://browserless.home:3000/
 
-- Databases:
-    - TimescaleDB:
-        id: timescale
-        icon: /icons/timescale.svg
-        iconStyle: flat
-        ping: psql.home
-        description: Relational DB
-      
-    - Minio:
-        icon: si-minio
-        href: http://minio.home:9001/login
-        description: Object DB
-        siteMonitor: http://minio.home:9001/login
-        
-    - Qdrant:
-        icon: /icons/qdrant-icon.png
-        href: http://qdrant.home:6333/dashboard/#/collections
-        description: Vector DB
-        siteMonitor: http://qdrant.home:6333
-      
-    - Valkey:
-        icon: sh-valkey-light
-        description: Key/Value Stor
-        ping: key.home
-      
-    - Mongo:
-        icon: si-mongodb
-        description: Document DB
-        ping: mongo.home
+    - Home Assistant:
+        icon: si-homeassistant
+        href: http://ctrl.home:8123
+        description: Home automation platform
+        siteMonitor: http://ctrl.home:8123
+
+#- Databases:
+#    - TimescaleDB:
+#        id: timescale
+#        icon: /icons/timescale.svg
+#        iconStyle: flat
+#        ping: psql.home
+#        description: Relational DB
+#      
+#    - Minio:
+#        icon: si-minio
+#        href: http://minio.home:9001/login
+#        description: Object DB
+#        siteMonitor: http://minio.home:9001/login
+#        
+#    - Qdrant:
+#        icon: /icons/qdrant-icon.png
+#        href: http://qdrant.home:6333/dashboard/#/collections
+#        description: Vector DB
+#        siteMonitor: http://qdrant.home:6333
+#      
+#    - Valkey:
+#        icon: sh-valkey-light
+#        description: Key/Value Stor
+#        ping: key.home
+#      
+#    - Mongo:
+#        icon: si-mongodb
+#        description: Document DB
+#        ping: mongo.home
 
 - External:
     - ntfy:
