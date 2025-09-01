@@ -11,6 +11,7 @@ services:
     environment:
       - JWT_AUTH_TOKEN_SECRET
       - JWT_REFRESH_TOKEN_SECRET
+      - DEBUG
       - PORT=80
       - BLOB_STORAGE_PATH=/app/storage
       - DATABASE_PATH=/app/data
