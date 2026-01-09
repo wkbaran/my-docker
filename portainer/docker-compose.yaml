@@ -1,12 +1,13 @@
 services:
   portainer:
-    image: portainer/portainer-ce:2.29.2
+    image: portainer/portainer-ce:2.33.6
     container_name: portainer
     hostname: port
+    privileged: true
     entrypoint: /portainer -p :443
     volumes:
       - portainer_data:/data
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro,z
     restart: unless-stopped
     labels:
       - "coredns.dockerdiscovery.host=port.home"
