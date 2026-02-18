@@ -1,7 +1,8 @@
 services:
   xyops:
-    image: ghcr.io/pixlcore/xyops:1.0.1
+    image: ghcr.io/pixlcore/xyops:5L4GHP
     hostname: xyops
+    privileged: true
     init: true
     restart: unless-stopped
     environment:
