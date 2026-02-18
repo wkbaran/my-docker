@@ -1,6 +1,6 @@
 services:
   xyops:
-    image: ghcr.io/pixlcore/xyops:5L4GHP
+    image: ghcr.io/pixlcore/xyops:latest
     hostname: xyops
     privileged: true
     init: true
