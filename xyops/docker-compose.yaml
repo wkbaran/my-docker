@@ -1,0 +1,29 @@
+services:
+  xyops:
+    image: ghcr.io/pixlcore/xyops:1.0.1
+    hostname: xyops
+    init: true
+    restart: unless-stopped
+    environment:
+      TZ: "America/Denver"
+      XYOPS_xysat_local: "true"
+    ports:
+      - "5522:5522"
+      - "5523:5523"
+    volumes:
+      - xy-data:/opt/xyops/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro,z
+    labels:
+      - "coredns.dockerdiscovery.host=xyops.home"
+    dns:
+      - 192.168.40.5
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.44
+
+volumes:
+  xy-data:
+
+networks:
+  app-network:
+    external: true
