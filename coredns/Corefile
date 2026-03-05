@@ -19,6 +19,7 @@ home {
     }
     docker {
         domain home
+        network_aliases app-network
         ttl 60
     }
     cache 30

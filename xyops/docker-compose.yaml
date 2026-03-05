@@ -20,7 +20,7 @@ services:
       - 192.168.40.5
     networks:
       app-network:
-        ipv4_address: 192.168.40.44
+        ipv4_address: 192.168.40.46
 
 volumes:
   xy-data:
