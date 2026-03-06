@@ -1,0 +1,74 @@
+services:
+  penpot:
+    image: penpotapp/frontend:latest
+    container_name: penpot-frontend
+    volumes:
+      - /var/home/core/penpot/assets:/opt/penpot/assets
+    restart: unless-stopped
+    environment:
+      - PENPOT_PUBLIC_URI=https://penpot.billbaran.us
+      - PENPOT_SMTP_ENABLED=false
+      - PENPOT_BACKEND_URI=http://penpot-backend:6060
+      - PENPOT_ASSETS_URI=/assets
+    depends_on:
+      - penpot-backend
+      - penpot-postgres
+      - penpot-redis
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.13
+      penpot-internal:
+
+  penpot-backend:
+    image: penpotapp/backend:latest
+    container_name: penpot-backend
+    volumes:
+      - /var/home/core/penpot/assets:/opt/penpot/assets
+    restart: unless-stopped
+    environment:
+      - PENPOT_PUBLIC_URI=https://penpot.billbaran.us
+      - PENPOT_DATABASE_URI=postgresql://penpot:penpot@penpot-postgres/penpot
+      - PENPOT_REDIS_URI=redis://penpot-redis/0
+      - PENPOT_ASSETS_STORAGE_BACKEND=assets-fs
+      - PENPOT_STORAGE_ASSETS_FS_DIRECTORY=/opt/penpot/assets
+      - PENPOT_SMTP_ENABLED=false
+    networks:
+      penpot-internal:
+
+  penpot-exporter:
+    image: penpotapp/exporter:latest
+    container_name: penpot-exporter
+    restart: unless-stopped
+    environment:
+      - PENPOT_PUBLIC_URI=https://penpot.billbaran.us
+    networks:
+      penpot-internal:
+
+  penpot-postgres:
+    image: postgres:13
+    container_name: penpot-postgres
+    restart: unless-stopped
+    volumes:
+      - /var/home/core/penpot/postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=penpot
+      - POSTGRES_PASSWORD=penpot
+      - POSTGRES_DB=penpot
+    networks:
+      penpot-internal:
+
+  penpot-redis:
+    image: redis:6
+    container_name: penpot-redis
+    restart: unless-stopped
+    volumes:
+      - /var/home/core/penpot/redis-data:/data
+    networks:
+      penpot-internal:
+
+networks:
+  app-network:
+    external: true
+  penpot-internal:
+    driver: bridge
+    internal: true
