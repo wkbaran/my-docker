@@ -8,9 +8,11 @@ services:
     environment:
       TZ: "America/Denver"
       XYOPS_xysat_local: "true"
-    ports:
-      - "5522:5522"
-      - "5523:5523"
+      XYOPS_WebServer__port: 80
+      XYOPS_WebServer__https_port: 443
+#    ports:
+#      - "5522:5522"
+#      - "5523:5523"
     volumes:
       - xy-data:/opt/xyops/data
       - /var/run/docker.sock:/var/run/docker.sock:ro,z
