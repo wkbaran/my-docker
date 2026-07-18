@@ -1,0 +1,27 @@
+services:
+  hindsight:
+    image: ghcr.io/vectorize-io/hindsight:latest
+    container_name: hindsight
+    restart: unless-stopped
+    environment:
+      HINDSIGHT_API_LLM_PROVIDER: ollama
+      HINDSIGHT_API_LLM_BASE_URL: http://dtop.home:11434
+      HINDSIGHT_API_LLM_MODEL: qwen2.5:14b
+      HINDSIGHT_API_LLM_API_KEY: unused
+      HINDSIGHT_API_LLM_TIMEOUT: 600
+      HINDSIGHT_API_EMBEDDINGS_PROVIDER: local
+      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: BAAI/bge-small-en-v1.5
+    volumes:
+      - hindsight-data:/home/hindsight/.pg0
+    labels:
+      - "coredns.dockerdiscovery.host=hindsight.home"
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.49
+
+volumes:
+  hindsight-data:
+
+networks:
+  app-network:
+    external: true
