@@ -19,6 +19,9 @@ services:
       - /var/home/core/hermes/config.yaml:/opt/data/config.yaml
       - /var/home/core/hermes/hindsight/config.json:/opt/data/hindsight/config.json
       - /var/home/core/hermes/SOUL.md:/opt/data/SOUL.md
+      # Docker sandbox support: socket access to spawn sibling sandbox containers
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/home/core/hermes/sandbox-output:/opt/hermes/sandbox-output
     labels:
       - "coredns.dockerdiscovery.host=hermes.home"
     networks:
