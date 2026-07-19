@@ -14,7 +14,7 @@ services:
       DISCORD_ALLOWED_ROLES: ${DISCORD_ALLOWED_ROLES}
     volumes:
       # bulk state: sessions, memories, skills, cron, hooks, logs, home/
-      - hermes-data:/opt/data
+      - /opt/data:/opt/data
       # config files, bind-mounted individually so they're directly editable/versionable on the host
       - /var/home/core/hermes/config.yaml:/opt/data/config.yaml
       - /var/home/core/hermes/hindsight/config.json:/opt/data/hindsight/config.json
@@ -27,9 +27,6 @@ services:
     networks:
       app-network:
         ipv4_address: 192.168.40.50
-
-volumes:
-  hermes-data:
 
 networks:
   app-network:
