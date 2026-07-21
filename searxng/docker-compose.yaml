@@ -1,0 +1,18 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    volumes:
+      - ./searxng/settings.yml:/etc/searxng/settings.yml
+    environment:
+      SEARXNG_BASE_URL: "http://searxng.home:8080/"
+    labels:
+      - "coredns.dockerdiscovery.host=searxng.home"
+    networks:
+      app-network:
+        ipv4_address: 192.168.40.51
+
+networks:
+  app-network:
+    external: true
