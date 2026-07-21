@@ -12,6 +12,11 @@ services:
       HERMES_DASHBOARD_BASIC_AUTH_SECRET: ${HERMES_AUTH_SECRET}
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       DISCORD_ALLOWED_ROLES: ${DISCORD_ALLOWED_ROLES}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPEN_API_KEY: ${OPEN_API_KEY}
+      ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY}
+      BROWSERLESS_TOKEN: ${BROWSERLESS_TOKEN}
+      SEARXNG_BASE_URL: ${SEARXNG_BASE_URL}
     volumes:
       # bulk state: sessions, memories, skills, cron, hooks, logs, home/
       - /opt/data:/opt/data
