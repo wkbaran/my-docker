@@ -4,7 +4,7 @@ services:
     container_name: searxng
     restart: unless-stopped
     volumes:
-      - ./searxng/settings.yml:/etc/searxng/settings.yml
+      - /var/home/core/searxng/settings.yml:/etc/searxng/settings.yml
     environment:
       SEARXNG_BASE_URL: "http://searxng.home:8080/"
     labels:
