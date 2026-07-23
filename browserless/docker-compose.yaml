@@ -1,6 +1,6 @@
 services:
   browserless:
-    image: browserless/chrome:1.60-chrome-stable
+    image: ghcr.io/browserless/chromium:latest
     container_name: browserless
     hostname: browserless
     shm_size: 4g
@@ -32,7 +32,7 @@ services:
       - PREBOOT_CHROME=true
 
       - ENABLE_CORS=true
-      - ENABLE_API_GET=true
+      - ALLOW_GET=true
       - WORKSPACE_DELETE_EXPIRED=false
       - WORKSPACE_EXPIRE_DAYS=7
 
