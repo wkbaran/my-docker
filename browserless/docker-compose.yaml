@@ -17,6 +17,7 @@ services:
       app-network:
         ipv4_address: 192.168.40.21
     environment:
+      - EXTERNAL=ws://brwsr.home:3000
       - TOKEN
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1024
