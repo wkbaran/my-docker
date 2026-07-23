@@ -17,6 +17,8 @@ services:
       ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY}
       BROWSERLESS_TOKEN: ${BROWSERLESS_TOKEN}
       SEARXNG_BASE_URL: ${SEARXNG_BASE_URL}
+      # Error message says use this
+      SEARXNG_URL: ${SEARXNG_BASE_URL}
     volumes:
       # bulk state: sessions, memories, skills, cron, hooks, logs, home/
       - /opt/data:/opt/data
