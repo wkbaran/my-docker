@@ -1,33 +1,48 @@
 services:
+  docker-socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      CONTAINERS: 1
+      IMAGES: 1
+      NETWORKS: 1
+      # everything else defaults to 0/denied
+    networks:
+      app-network: {}
+
   hermes:
     image: nousresearch/hermes-agent:latest
     container_name: hermes
     restart: unless-stopped
     command: gateway run
     environment:
+      PUID: "1000"
+      PGID: "1000"
+      DOCKER_HOST: tcp://docker-socket-proxy:2375
       HERMES_DASHBOARD: 1
-      HERMES_DASHBOARD_HOST: 0.0.0.0
+      HERMES_DASHBOARD_HOST: 192.168.40.50
       HERMES_DASHBOARD_BASIC_AUTH_USERNAME: ${HERMES_AUTH_USER}
       HERMES_DASHBOARD_BASIC_AUTH_PASSWORD: ${HERMES_AUTH_PASSWORD}
       HERMES_DASHBOARD_BASIC_AUTH_SECRET: ${HERMES_AUTH_SECRET}
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       DISCORD_ALLOWED_ROLES: ${DISCORD_ALLOWED_ROLES}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
-      OPEN_API_KEY: ${OPEN_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
       ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY}
       BROWSERLESS_TOKEN: ${BROWSERLESS_TOKEN}
       SEARXNG_BASE_URL: ${SEARXNG_BASE_URL}
       # Error message says use this
       SEARXNG_URL: ${SEARXNG_BASE_URL}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
     volumes:
       # bulk state: sessions, memories, skills, cron, hooks, logs, home/
-      - /opt/data:/opt/data
+      - /var/home/core/hermes/data:/opt/data
       # config files, bind-mounted individually so they're directly editable/versionable on the host
-      - /var/home/core/hermes/config.yaml:/opt/data/config.yaml
-      - /var/home/core/hermes/hindsight/config.json:/opt/data/hindsight/config.json
-      - /var/home/core/hermes/SOUL.md:/opt/data/SOUL.md
-      # Docker sandbox support: socket access to spawn sibling sandbox containers
-      - /var/run/docker.sock:/var/run/docker.sock
+      #- /var/home/core/hermes/config.yaml:/opt/data/config.yaml
+      #- /var/home/core/hermes/hindsight/config.json:/opt/data/hindsight/config.json
+      #- /var/home/core/hermes/SOUL.md:/opt/data/SOUL.md
       - /var/home/core/hermes/sandbox-output:/opt/hermes/sandbox-output
     labels:
       - "coredns.dockerdiscovery.host=hermes.home"
