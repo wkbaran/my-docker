@@ -8,9 +8,11 @@ services:
       CONTAINERS: 1
       IMAGES: 1
       NETWORKS: 1
+      POST: 1
+      EXEC: 1
       # everything else defaults to 0/denied
     networks:
-      app-network: {}
+      docker-proxy-internal: {}
 
   hermes:
     image: nousresearch/hermes-agent:latest
@@ -49,7 +51,10 @@ services:
     networks:
       app-network:
         ipv4_address: 192.168.40.50
+      docker-proxy-internal: {}
 
 networks:
   app-network:
     external: true
+  docker-proxy-internal:
+    internal: true
