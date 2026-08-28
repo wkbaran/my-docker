@@ -28,6 +28,7 @@ services:
       HERMES_DASHBOARD_BASIC_AUTH_USERNAME: ${HERMES_AUTH_USER}
       HERMES_DASHBOARD_BASIC_AUTH_PASSWORD: ${HERMES_AUTH_PASSWORD}
       HERMES_DASHBOARD_BASIC_AUTH_SECRET: ${HERMES_AUTH_SECRET}
+      HERMES_WRITE_SAFE_ROOT: ${HERMES_WRITE_SAFE_ROOT}
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
       DISCORD_ALLOWED_ROLES: ${DISCORD_ALLOWED_ROLES}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
@@ -46,6 +47,7 @@ services:
       #- /var/home/core/hermes/hindsight/config.json:/opt/data/hindsight/config.json
       #- /var/home/core/hermes/SOUL.md:/opt/data/SOUL.md
       - /var/home/core/hermes/sandbox-output:/opt/hermes/sandbox-output
+      - /var/home/core/hermes/data/sandbox:/opt/hermes-sandbox
     labels:
       - "coredns.dockerdiscovery.host=hermes.home"
     networks:
