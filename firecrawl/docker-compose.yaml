@@ -1,0 +1,190 @@
+name: firecrawl
+
+# Self-hosted Firecrawl (https://github.com/firecrawl/firecrawl) using prebuilt
+# images -- no source checkout needed, safe to deploy from this compose file
+# alone via Portainer.
+#
+# Network layout:
+#   - firecrawl-internal: plain bridge network, NOT attached to app-network/LAN.
+#     Redis, RabbitMQ, Postgres, and the Playwright renderer all live here only,
+#     mirroring how docker-socket-proxy hides behind docker-proxy-internal in
+#     hermes/docker-compose.yaml. It's intentionally NOT marked `internal: true`
+#     (unlike docker-proxy-internal) because the Playwright renderer needs
+#     outbound internet access to actually fetch pages -- `internal: true`
+#     would block that too, not just inbound LAN access.
+#   - app-network: only the `api` service joins this, at a pinned static IP,
+#     so Hermes (or anything else on app-network) can reach it directly.
+#     Nothing else in this stack is exposed there.
+
+x-common-service: &common-service
+  image: ghcr.io/firecrawl/firecrawl
+  restart: unless-stopped
+  ulimits:
+    nofile:
+      soft: 65535
+      hard: 65535
+  networks:
+    - firecrawl-internal
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "3"
+      compress: "true"
+
+x-common-env: &common-env
+  REDIS_URL: redis://redis:6379
+  REDIS_RATE_LIMIT_URL: redis://redis:6379
+  PLAYWRIGHT_MICROSERVICE_URL: http://playwright-service:3000/scrape
+  POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-postgres}"
+  POSTGRES_DB: ${POSTGRES_DB:-postgres}
+  POSTGRES_HOST: nuq-postgres
+  POSTGRES_PORT: 5432
+  USE_DB_AUTHENTICATION: "false"
+  NUM_WORKERS_PER_QUEUE: ${NUM_WORKERS_PER_QUEUE:-8}
+  CRAWL_CONCURRENT_REQUESTS: ${CRAWL_CONCURRENT_REQUESTS:-10}
+  MAX_CONCURRENT_JOBS: ${MAX_CONCURRENT_JOBS:-5}
+  BROWSER_POOL_SIZE: ${BROWSER_POOL_SIZE:-5}
+  LOGGING_LEVEL: ${LOGGING_LEVEL:-INFO}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+  MODEL_NAME: ${MODEL_NAME:-}
+  MODEL_EMBEDDING_NAME: ${MODEL_EMBEDDING_NAME:-}
+  OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-}
+  SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+  BULL_AUTH_KEY: ${BULL_AUTH_KEY:-}
+  SELF_HOSTED_WEBHOOK_URL: ${SELF_HOSTED_WEBHOOK_URL:-}
+  PROXY_SERVER: ${PROXY_SERVER:-}
+  PROXY_USERNAME: ${PROXY_USERNAME:-}
+  PROXY_PASSWORD: ${PROXY_PASSWORD:-}
+  BLOCK_MEDIA: ${BLOCK_MEDIA:-}
+  SEARXNG_ENDPOINT: ${SEARXNG_ENDPOINT:-}
+  SEARXNG_ENGINES: ${SEARXNG_ENGINES:-}
+  SEARXNG_CATEGORIES: ${SEARXNG_CATEGORIES:-}
+
+services:
+  playwright-service:
+    image: ghcr.io/firecrawl/playwright-service:latest
+    container_name: firecrawl-playwright-service
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      PROXY_SERVER: ${PROXY_SERVER:-}
+      PROXY_USERNAME: ${PROXY_USERNAME:-}
+      PROXY_PASSWORD: ${PROXY_PASSWORD:-}
+      ALLOW_LOCAL_WEBHOOKS: ${ALLOW_LOCAL_WEBHOOKS:-}
+      BLOCK_MEDIA: ${BLOCK_MEDIA:-}
+      MAX_CONCURRENT_PAGES: ${CRAWL_CONCURRENT_REQUESTS:-10}
+    networks:
+      - firecrawl-internal
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cpus: 2.0
+    mem_limit: 4G
+    memswap_limit: 4G
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        compress: "true"
+    tmpfs:
+      - /tmp/.cache:noexec,nosuid,size=1g
+
+  redis:
+    image: redis:alpine
+    container_name: firecrawl-redis
+    restart: unless-stopped
+    networks:
+      - firecrawl-internal
+    command: redis-server --bind 0.0.0.0
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+        compress: "true"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: firecrawl-rabbitmq
+    restart: unless-stopped
+    networks:
+      - firecrawl-internal
+    command: rabbitmq-server
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+        compress: "true"
+
+  nuq-postgres:
+    image: ghcr.io/firecrawl/nuq-postgres:latest
+    container_name: firecrawl-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    networks:
+      - firecrawl-internal
+    volumes:
+      - firecrawl_postgres_data:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        compress: "true"
+
+  api:
+    <<: *common-service
+    container_name: firecrawl-api
+    environment:
+      <<: *common-env
+      HOST: "0.0.0.0"
+      PORT: 3002
+      EXTRACT_WORKER_PORT: 3004
+      WORKER_PORT: 3005
+      NUQ_RABBITMQ_URL: amqp://rabbitmq:5672
+      ENV: local
+    depends_on:
+      redis:
+        condition: service_started
+      playwright-service:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+      nuq-postgres:
+        condition: service_started
+    command: node dist/src/harness.js --start-docker
+    cpus: 4.0
+    mem_limit: 8G
+    memswap_limit: 8G
+    labels:
+      - "coredns.dockerdiscovery.host=firecrawl.home"
+    networks:
+      firecrawl-internal: {}
+      app-network:
+        ipv4_address: 192.168.40.52
+
+networks:
+  firecrawl-internal:
+    driver: bridge
+  app-network:
+    external: true
+
+volumes:
+  firecrawl_postgres_data:
