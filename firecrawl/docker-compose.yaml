@@ -183,8 +183,16 @@ services:
     # else running here anyway. 0.75 leaves headroom alongside
     # playwright-service's 1.0 within the 2-CPU ceiling.
     cpus: 0.75
-    mem_limit: 1G
-    memswap_limit: 1G
+    # This harness runs ~10 separate Node processes in one container (api,
+    # worker, extract-worker, 5x nuq-worker, prefetch-worker, reconciler).
+    # Verified empirically on this host: 1G OOM-killed it immediately, 3G
+    # still got OOM-killed under load (observed steady-state ~2.4GB before the
+    # kill), 4G is confirmed stable with a real scrape running end-to-end.
+    # RAM was never actually scarce on this host (~7.7GB free at the time of
+    # testing), only CPU was the tight resource, so don't be afraid to raise
+    # this further if you see exit code 137 in `docker logs firecrawl-api`.
+    mem_limit: 4G
+    memswap_limit: 4G
     labels:
       - "coredns.dockerdiscovery.host=firecrawl.home"
     networks:
