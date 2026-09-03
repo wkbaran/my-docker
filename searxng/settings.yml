@@ -1,9 +1,12 @@
 use_default_settings: true
 
 server:
-  secret_key: "${SECRET_KEY}"
+  secret_key: "354614b176946ab3f5faa430cb7f5840acb9439717617593696df75744aa9293"
   limiter: false
   image_proxy: true
+
+outgoing:
+  useragent_suffix: "(admin@billbaran.us)"
 
 search:
   formats:
@@ -11,5 +14,852 @@ search:
     - json
 
 engines:
+
+  # ======================= GENERAL =======================
+
+  # --- active by default ---
+  - name: brave
+    categories: [general, web]
+  - name: currency
+    categories: [general, currency]
+  - name: duckduckgo
+    categories: [general, web]
+  - name: mojeek
+    categories: [general, web]
+    disabled: false
+  - name: startpage
+    categories: [general, web]
   - name: wikidata
+    categories: [general]
+  - name: wikipedia
+    categories: [general]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: 360search
+    categories: [general, web]
+  - name: abcnyheter
+    categories: [general, web]
+  - name: avalw
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: ayo
+    categories: [general, web]
+  - name: baidu
+    categories: [general, web]
+  - name: bing
+    categories: [general, web]
+  - name: boardreader
+    categories: [general]
+  - name: braveapi
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: chefkoch
+    categories: [general]
     disabled: true
+  - name: cl0q
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: crowdview
+    categories: [general, web]
+  - name: ddg definitions
+    categories: [general]
+  - name: dogpile
+    categories: [general, web]
+  - name: duckduckgo web
+    categories: [general, web]
+  - name: ebay
+    categories: [general]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: encyclosearch
+    categories: [general, web]
+  - name: erowid
+    categories: [general]
+#  - name: exaapi
+#    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: fastbot
+    categories: [general, web]
+  - name: fireball
+    categories: [general, web]
+  - name: fynd
+    categories: [general, web]
+  - name: gabanza
+    categories: [general, web]
+  - name: geizhals
+    categories: [general]
+  - name: gmx
+    categories: [general, web]
+  - name: google
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: google cse
+    categories: [general, web]
+    disabled: true
+  - name: grokipedia
+    categories: [general]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: heexy
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: infospace
+    categories: [general, web]
+  - name: iseek
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: kavunka demo
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+#  - name: keenable
+#    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: kozmonavt
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: kukei
+    categories: [general, blogs]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: luxxle
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: marginalia
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: mwmbl
+    categories: [general, web]
+  - name: naver
+    categories: [general, web]
+  - name: neocities
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: neosearch
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: privacywall
+    categories: [general, web]
+  - name: quark
+    categories: [general, web]
+  - name: qwant
+    categories: [general, web]
+  - name: rawweb
+    categories: [general, blogs]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: reloado
+    categories: [general, web]
+  - name: resulthunter
+    categories: [general, web]
+  - name: searchch
+    categories: [general, web]
+  - name: searchmysite
+    categories: [general, blogs]
+  - name: searchtoday
+    categories: [general, web]
+  - name: searchzee
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: seekninja
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: seznam
+    categories: [general, web]
+  - name: sogou
+    categories: [general, web]
+  - name: startpagina
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: swisscows
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tiger
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tonline
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tusksearch
+    categories: [general, web]
+  - name: unobtanium
+    categories: [general, blogs]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: vuhuv
+    categories: [general, web]
+  - name: wiby
+    categories: [general, blogs]
+  - name: wikibooks
+    categories: [general, wikimedia]
+  - name: wikimini
+    categories: [general, web]
+  - name: wikiquote
+    categories: [general, wikimedia]
+  - name: wikisource
+    categories: [general, wikimedia]
+  - name: wikispecies
+    categories: [general, science, wikimedia]
+  - name: wikiversity
+    categories: [general, wikimedia]
+  - name: wikivoyage
+    categories: [general, wikimedia]
+  - name: wolframalpha
+    categories: [general]
+  - name: wolframalpha_api
+    categories: [general]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: xonaly
+    categories: [general, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: yacy
+    categories: [general, web]
+  - name: yahoo
+    categories: [general, web]
+  - name: yandex
+    categories: [general, web]
+  - name: yep
+    categories: [general, web]
+  - name: zapmeta
+    categories: [general, web]
+
+  # ======================= IMAGES =======================
+
+  # --- active by default ---
+  - name: bing images
+    categories: [images, web]
+  - name: brave.images
+    categories: [images, web]
+  - name: duckduckgo images
+    categories: [images, web]
+  - name: openverse
+    categories: [images]
+  - name: startpage images
+    categories: [images, web]
+  - name: unsplash
+    categories: [images]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: 1x
+    categories: [images]
+  - name: 500px
+    categories: [images]
+  - name: adobe stock
+    categories: [images]
+  - name: artic
+    categories: [images]
+    disabled: true
+  - name: artstation
+    categories: [images]
+  - name: baidu images
+    categories: [images, web]
+  - name: cara
+    categories: [images]
+  - name: deviantart
+    categories: [images]
+    disabled: true
+  - name: devicons
+    categories: [images, icons]
+    disabled: true
+  - name: dogpile images
+    categories: [images, web]
+  - name: findfiles images
+    categories: [images, web]
+  - name: findthatmeme
+    categories: [images]
+  - name: flaticon
+    categories: [images, icons]
+  - name: flickr
+    categories: [images]
+    disabled: true
+  - name: flickr_api
+    categories: [images]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: frinkiac
+    categories: [images]
+  - name: giphy
+    categories: [images]
+  - name: google cse images
+    categories: [images, web]
+    disabled: true
+  - name: google images
+    categories: [images, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: heexy images
+    categories: [images, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: imgur
+    categories: [images]
+  - name: ipernity
+    categories: [images]
+  - name: library of congress
+    categories: [images]
+  - name: lucide
+    categories: [images, icons]
+    disabled: true
+  - name: luxxle images
+    categories: [images, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: magnific
+    categories: [images]
+  - name: material icons
+    categories: [images, icons]
+  - name: mojeek images
+    categories: [images, web]
+  - name: naver images
+    categories: [images, web]
+  - name: openclipart
+    categories: [images]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: pexels
+    categories: [images]
+    disabled: true
+  - name: picjumbo
+    categories: [images]
+  - name: pinterest
+    categories: [images]
+    disabled: true
+  - name: pixabay images
+    categories: [images]
+  - name: pixiv
+    categories: [images]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: privacywall images
+    categories: [images, web]
+  - name: public domain image archive
+    categories: [images]
+  - name: quark images
+    categories: [images, web]
+  - name: qwant images
+    categories: [images, web]
+  - name: resulthunter images
+    categories: [images, web]
+  - name: selfhst icons
+    categories: [images, icons]
+  - name: shopify stock
+    categories: [images]
+  - name: sogou images
+    categories: [images, web]
+  - name: startpagina images
+    categories: [images, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: stocksnap
+    categories: [images]
+  - name: swisscows images
+    categories: [images, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tineye
+    categories: [images]
+  - name: tonline images
+    categories: [images, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tusksearch images
+    categories: [images, web]
+  - name: uxwing
+    categories: [images, icons]
+  - name: vuhuv images
+    categories: [images, web]
+  - name: wallhaven
+    categories: [images]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: wikicommons.images
+    categories: [images]
+    disabled: true
+  - name: yacy images
+    categories: [images, web]
+  - name: yandex images
+    categories: [images, web]
+
+  # ======================= VIDEOS =======================
+
+  # --- active by default ---
+  - name: bing videos
+    categories: [videos, web]
+  - name: brave.videos
+    categories: [videos, web]
+  - name: dailymotion
+    categories: [videos]
+  - name: duckduckgo videos
+    categories: [videos, web]
+  - name: vimeo
+    categories: [videos]
+  - name: youtube
+    categories: [videos]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: 360search videos
+    categories: [videos, web]
+  - name: acfun
+    categories: [videos]
+  - name: adobe stock video
+    categories: [videos]
+  - name: bilibili
+    categories: [videos]
+  - name: bitchute
+    categories: [videos]
+  - name: dogpile videos
+    categories: [videos, web]
+  - name: findfiles videos
+    categories: [videos, web]
+  - name: fireball videos
+    categories: [videos, web]
+  - name: google play movies
+    categories: [videos]
+  - name: google videos
+    categories: [videos, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: imdb
+    categories: [videos, movies]
+  - name: ina
+    categories: [videos]
+  - name: iqiyi
+    categories: [videos]
+  - name: luxxle videos
+    categories: [videos, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: media.ccc.de
+    categories: [videos]
+  - name: mediathekviewweb
+    categories: [videos]
+  - name: moviepilot
+    categories: [videos, movies]
+  - name: naver videos
+    categories: [videos, web]
+  - name: niconico
+    categories: [videos]
+  - name: odysee
+    categories: [videos]
+  - name: peertube
+    categories: [videos]
+  - name: piped
+    categories: [videos]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: pixabay videos
+    categories: [videos]
+  - name: privacywall videos
+    categories: [videos, web]
+  - name: qwant videos
+    categories: [videos, web]
+  - name: rottentomatoes
+    categories: [videos, movies]
+  - name: rumble
+    categories: [videos]
+  - name: senscritique
+    categories: [videos, movies]
+  - name: sepiasearch
+    categories: [videos]
+    disabled: true
+  - name: sogou videos
+    categories: [videos, web]
+  - name: startpagina videos
+    categories: [videos, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: swisscows videos
+    categories: [videos, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tmdb
+    categories: [videos, movies]
+  - name: tonline videos
+    categories: [videos, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tusksearch videos
+    categories: [videos, web]
+  - name: vuhuv videos
+    categories: [videos, web]
+  - name: wikicommons.videos
+    categories: [videos]
+    disabled: true
+  - name: youtube_api
+    categories: [videos]
+    # inactive upstream: needs API key or self-hosted backend
+
+  # ======================= NEWS =======================
+
+  # --- active by default ---
+  - name: bing news
+    categories: [news, web]
+  - name: brave.news
+    categories: [news, web]
+  - name: duckduckgo news
+    categories: [news, web]
+  - name: google news
+    categories: [news, web]
+  - name: reuters
+    categories: [news]
+  - name: startpage news
+    categories: [news, web]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: ansa
+    categories: [news]
+  - name: bpb
+    categories: [news]
+  - name: chinaso news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: destatis
+    categories: [news]
+  - name: dogpile news
+    categories: [news, web]
+  - name: fireball news
+    categories: [news, web]
+  - name: il post
+    categories: [news]
+  - name: luxxle news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: mojeek news
+    categories: [news, web]
+  - name: naver news
+    categories: [news, web]
+  - name: qwant news
+    categories: [news, web]
+  - name: searchzee news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: sina
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: sogou wechat
+    categories: [news, web]
+  - name: startpagina news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: swisscows news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tagesschau
+    categories: [news]
+  - name: tiger news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tonline news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: tusksearch news
+    categories: [news, web]
+  - name: wikinews
+    categories: [news, wikimedia]
+    disabled: true
+  - name: yahoo news
+    categories: [news, web]
+    # inactive upstream: needs API key or self-hosted backend
+
+  # ======================= MAP / WEATHER =======================
+
+  # --- active by default ---
+  - name: openstreetmap
+    categories: [map]
+  - name: photon
+    categories: [map]
+  - name: wttr.in
+    categories: [map]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: apple maps
+    categories: [map]
+  - name: duckduckgo weather
+    categories: [map]
+  - name: openmeteo
+    categories: [map]
+
+  # ======================= MUSIC =======================
+
+  # --- active by default ---
+  - name: bandcamp
+    categories: [music]
+  - name: genius
+    categories: [music, lyrics]
+  - name: mixcloud
+    categories: [music]
+  - name: radio browser
+    categories: [music, radio]
+  - name: soundcloud
+    categories: [music]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: adobe stock audio
+    categories: [music]
+  - name: deezer
+    categories: [music]
+  - name: findfiles music
+    categories: [music]
+  - name: freesound
+    categories: [music]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: fyyd
+    categories: [music]
+  - name: piped.music
+    categories: [music]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: podchaser
+    categories: [music]
+  - name: wikicommons.audio
+    categories: [music]
+    disabled: true
+  - name: yandex music
+    categories: [music]
+
+  # ======================= IT =======================
+
+  # --- active by default ---
+  - name: arch linux wiki
+    categories: [it, software wikis]
+  - name: askubuntu
+    categories: [it, q&a]
+  - name: docker hub
+    categories: [it, packages]
+  - name: github
+    categories: [it, repos]
+  - name: mdn
+    categories: [it]
+  - name: pypi
+    categories: [it, packages]
+  - name: stackoverflow
+    categories: [it, q&a]
+  - name: superuser
+    categories: [it, q&a]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: alpine linux packages
+    categories: [it, packages]
+  - name: anaconda
+    categories: [it, packages]
+  - name: azure
+    categories: [it, cloud]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: baidu kaifa
+    categories: [it]
+  - name: bitbucket
+    categories: [it, repos]
+  - name: cachy os packages
+    categories: [it, packages]
+  - name: caddy.community
+    categories: [it, q&a]
+  - name: cloudflareai
+    categories: [it, cloud]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: codeberg
+    categories: [it, repos]
+  - name: crates.io
+    categories: [it, packages]
+  - name: discuss.python
+    categories: [it, q&a]
+  - name: elasticsearch
+    categories: [it]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: free software directory
+    categories: [it, software wikis]
+  - name: gentoo
+    categories: [it, software wikis]
+    disabled: true
+  - name: gitea.com
+    categories: [it, repos]
+  - name: github code
+    categories: [it, repos]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: gitlab
+    categories: [it, repos]
+  - name: habrahabr
+    categories: [it]
+  - name: hackernews
+    categories: [it, q&a]
+  - name: hex
+    categories: [it, packages]
+  - name: hoogle
+    categories: [it, packages]
+    disabled: true
+  - name: huggingface
+    categories: [it, repos]
+  - name: huggingface datasets
+    categories: [it, repos]
+  - name: huggingface spaces
+    categories: [it, repos]
+  - name: lib.rs
+    categories: [it, packages]
+  - name: lobste.rs
+    categories: [it, q&a]
+  - name: mankier
+    categories: [it]
+    disabled: true
+  - name: metacpan
+    categories: [it, packages]
+  - name: microsoft learn
+    categories: [it]
+  - name: minecraft wiki
+    categories: [it, software wikis]
+  - name: national vulnerability database
+    categories: [it]
+  - name: nixos wiki
+    categories: [it, software wikis]
+  - name: npm
+    categories: [it, packages]
+  - name: ollama
+    categories: [it, repos]
+  - name: packagist
+    categories: [it, packages]
+  - name: pi-hole.community
+    categories: [it, q&a]
+  - name: pkg.go.dev
+    categories: [it, packages]
+  - name: pub.dev
+    categories: [it, packages]
+  - name: repology
+    categories: [it, packages]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: rubygems
+    categories: [it, packages]
+  - name: sourcehut
+    categories: [it, repos]
+  - name: voidlinux
+    categories: [it, packages]
+
+  # ======================= SCIENCE =======================
+
+  # --- active by default ---
+  - name: arxiv
+    categories: [science]
+  - name: crossref
+    categories: [science]
+    disabled: false
+  - name: google scholar
+    categories: [science]
+  - name: openalex
+    categories: [science]
+    disabled: false
+  - name: pdbe
+    categories: [science]
+  - name: pubmed
+    categories: [science]
+  - name: semantic scholar
+    categories: [science]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: astrophysics data system
+    categories: [science]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: core.ac.uk
+    categories: [science, files]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: openairedatasets
+    categories: [science, files]
+    disabled: true
+  - name: openairepublications
+    categories: [science]
+    disabled: true
+  - name: springer nature
+    categories: [science]
+    # inactive upstream: needs API key or self-hosted backend
+
+  # ======================= FILES =======================
+
+  # --- active by default ---
+  - name: annas archive
+    categories: [files, books]
+    disabled: false
+  - name: bt4g
+    categories: [files]
+  - name: kickass
+    categories: [files]
+  - name: piratebay
+    categories: [files]
+  - name: solidtorrents
+    categories: [files]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: 1337x
+    categories: [files]
+  - name: Torznab EZTV
+    categories: [files]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: apk mirror
+    categories: [files, apps]
+  - name: apple app store
+    categories: [files, apps]
+  - name: btdigg
+    categories: [files]
+  - name: fdroid
+    categories: [files, apps]
+  - name: findfiles
+    categories: [files]
+  - name: goodreads
+    categories: [files, books]
+  - name: google play apps
+    categories: [files, apps]
+  - name: library genesis
+    categories: [files, books]
+  - name: nyaa
+    categories: [files, videos]
+  - name: openlibrary
+    categories: [files, books]
+  - name: openrepos
+    categories: [files]
+  - name: steam
+    categories: [files, apps]
+  - name: tokyotoshokan
+    categories: [files, videos]
+  - name: wikicommons.files
+    categories: [files]
+    disabled: true
+  - name: z-library
+    categories: [files, books]
+    # inactive upstream: needs API key or self-hosted backend
+
+  # ======================= SOCIAL MEDIA =======================
+
+  # --- active by default ---
+  - name: lemmy communities
+    categories: [social media]
+  - name: mastodon users
+    categories: [social media]
+  - name: tootfinder
+    categories: [social media]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: 9gag
+    categories: [social media]
+  - name: lemmy comments
+    categories: [social media]
+    disabled: true
+  - name: lemmy posts
+    categories: [social media]
+    disabled: true
+  - name: lemmy users
+    categories: [social media]
+    disabled: true
+  - name: mastodon hashtags
+    categories: [social media]
+    disabled: true
+
+  # ======================= DICTIONARIES / TRANSLATE =======================
+
+  # --- active by default ---
+  - name: dictzone
+    categories: [dictionaries, translate]
+  - name: wiktionary
+    categories: [dictionaries, wikimedia]
+
+  # --- categorised but disabled (reachable via engines= or prefs) ---
+  - name: deepl
+    categories: [dictionaries, translate]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: duden
+    categories: [dictionaries]
+  - name: emojipedia
+    categories: [dictionaries]
+  - name: etymonline
+    categories: [dictionaries]
+    disabled: true
+  - name: jisho
+    categories: [dictionaries]
+  - name: libretranslate
+    categories: [dictionaries, translate]
+    # inactive upstream: needs API key or self-hosted backend
+  - name: lingva
+    categories: [dictionaries, translate]
+    disabled: true
+  - name: mozhi
+    categories: [dictionaries, translate]
+  - name: mymemory translated
+    categories: [dictionaries, translate]
+    disabled: true
+  - name: wordnik
+    categories: [dictionaries]
+    disabled: true
+  - name: woxikon.de synonyme
+    categories: [dictionaries]
+
