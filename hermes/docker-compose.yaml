@@ -39,6 +39,7 @@ services:
       # Error message says use this
       SEARXNG_URL: ${SEARXNG_BASE_URL}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
+      FIRECRAWL_API_URL: ${FIRECRAWL_API_URL}
     volumes:
       # bulk state: sessions, memories, skills, cron, hooks, logs, home/
       - /var/home/core/hermes/data:/opt/data
