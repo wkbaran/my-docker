@@ -9,6 +9,8 @@ services:
       HINDSIGHT_API_LLM_MODEL: ${LLM_MODEL}
       HINDSIGHT_API_LLM_API_KEY: unused
       HINDSIGHT_API_LLM_TIMEOUT: 600
+      # Ollama turns Qwen's thinking on when reasoning_effort isn't sent: about 4x the tokens and time for retain/consolidation, with no better facts.
+      HINDSIGHT_API_LLM_REASONING_EFFORT: none
       HINDSIGHT_API_EMBEDDINGS_PROVIDER: local
       HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: BAAI/bge-small-en-v1.5
     volumes:
