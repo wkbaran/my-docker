@@ -11,6 +11,7 @@ services:
       - DATABASE_URL
       - LITELLM_MASTER_KEY
       - STORE_MODEL_IN_DB=True
+      - MAX_STRING_LENGTH_PROMPT_IN_DB=500000
     depends_on:
       - db
 #    healthcheck:
