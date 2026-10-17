@@ -1,0 +1,11 @@
+# Logs every request (full payload incl. cost) to S3. Order matters: s3_callback_params must come before the
+# callbacks, or the logger is built at startup without its bucket and region.
+litellm_settings:
+  s3_callback_params:
+    s3_bucket_name: litellm-logs-billbaran
+    s3_region_name: us-west-2
+    s3_aws_access_key_id: os.environ/S3_LOG_ACCESS_KEY_ID
+    s3_aws_secret_access_key: os.environ/S3_LOG_SECRET_ACCESS_KEY
+    s3_path: proxy
+  success_callback: ["s3_v2"]
+  failure_callback: ["s3_v2"]

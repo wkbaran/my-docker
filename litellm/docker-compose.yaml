@@ -3,8 +3,9 @@ services:
 #    image: ghcr.io/berriai/litellm:v1.75.5-stable
     image: ghcr.io/berriai/litellm:v1.104.2
     restart: unless-stopped
-#    volumes:
-#      - ./config.yaml:/app/config.yaml
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    volumes:
+      - /var/home/core/litellm/config.yaml:/app/config.yaml:ro
 #    ports:
 #      - "4000:4000"
     environment:
@@ -12,6 +13,11 @@ services:
       - LITELLM_MASTER_KEY
       - STORE_MODEL_IN_DB=True
       - MAX_STRING_LENGTH_PROMPT_IN_DB=500000
+      - S3_LOG_ACCESS_KEY_ID
+      - S3_LOG_SECRET_ACCESS_KEY
+      - AWS_ACCESS_KEY_ID=${S3_LOG_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${S3_LOG_SECRET_ACCESS_KEY}
+      - AWS_REGION_NAME=us-west-2
     depends_on:
       - db
 #    healthcheck:
