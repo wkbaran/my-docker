@@ -59,28 +59,7 @@ services:
       app-network:
         ipv4_address: 192.168.40.42
 
-  prometheus:
-    image: prom/prometheus
-    restart: unless-stopped
-    volumes:
-      - prometheus_data:/prometheus
-      - /var/home/core/litellm/prometheus.yml:/etc/prometheus/prometheus.yml
-#    ports:
-#      - "9090:9090"
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--storage.tsdb.path=/prometheus"
-      - "--storage.tsdb.retention.time=15d"
-    labels:
-      - "coredns.dockerdiscovery.host=liteprom.home"
-    dns:
-      - 192.168.40.5
-    networks:
-      app-network:
-        ipv4_address: 192.168.40.43
-
 volumes:
-  prometheus_data:
   postgres_data:
     name: litellm_postgres_data
 
